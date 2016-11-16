@@ -1,4 +1,4 @@
-DEFINES += DXS_VONABIRG
+DEFINES += SP_VONABIRG
 
 macx {
     QMAKE_MAC_SDK = macosx10.11

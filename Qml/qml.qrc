@@ -3,5 +3,7 @@
         <file>Root.qml</file>
         <file>Consts.qml</file>
         <file>qmldir</file>
+        <file>ScreenOfChoice.qml</file>
+        <file>Background.qml</file>
     </qresource>
 </RCC>

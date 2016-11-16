@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Century-Gothic-Bold.TTF</file>
+        <file>Century-Gothic-BoldIt.TTF</file>
+        <file>Century-Gothic-It.TTF</file>
+        <file>Century-Gothic.TTF</file>
+    </qresource>
+</RCC>

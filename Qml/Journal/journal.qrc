@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/Journal">
+        <file>Journal.qml</file>
+        <file>JournalModel.qml</file>
+        <file>JournalDelegate.qml</file>
+        <file>JournalView.qml</file>
+        <file>VisualStatesItem.qml</file>
+    </qresource>
+</RCC>
