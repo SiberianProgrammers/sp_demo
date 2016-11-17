@@ -10,7 +10,7 @@ Item {
     id: _journalDelegate
 
     width: Window.width - 2*Consts.margin
-    height: articleHeader.height + articleImage.height + 2*Consts.margin
+    height: contentColumn.height
     anchors.horizontalCenter: parent.horizontalCenter
 
     //--------------------------------------------------------------------------
@@ -31,8 +31,9 @@ Item {
 
             height: _journalDelegate.height
             width: _journalDelegate.width
-            contentHeight: contentColumn.height + 4.5*Consts.margin
-           // boundsBehavior: Flickable.StopAtBounds
+            contentHeight: contentColumn.height
+            // Убрал специально, иначе коллизии с mouseArea.
+            //boundsBehavior: Flickable.StopAtBounds
             clip: true
 
             //--------------------------------------------------------------------------
@@ -64,23 +65,16 @@ Item {
                 //--------------------------------------------------------------------------
                 // Картинка новости
                 //--------------------------------------------------------------------------
-                //TODO - сделать изображение паралакс
-//                Image {
-//                    id: articleImage
 
-//                    source: model.imageHeader
-//                    fillMode: Image.PreserveAspectCrop
-//                    width: parent.width
-//                    height: 0.4*Window.height
-//                } // Image {id: articleImage
-
-                ImageSp {
+                ImageParallax {
                     id: articleImage
 
-                    source: model.imageHeader
-                    fillMode: ImageSp.PreserveAspectCrop
+                    source: "qrc:/Journal/trump.png"
                     width: parent.width
                     height: 0.4*Window.height
+                    delegate: _journalDelegate
+                    relativeItem: journalView
+                    anchors.horizontalCenter: parent.horizontalCenter
                 }
 
                 //--------------------------------------------------------------------------
@@ -91,12 +85,14 @@ Item {
 
                     width: _journalDelegate.width - 4*Consts.margin
                     height: articleContent.height
+                    visible: articleContent.visible
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     Text {
                         id: articleContent
 
                         //text: model.content - выставляется в VisualStatesItem
+                        visible: text !== ""
                         width: articleContentItem.width
                         opacity: 0.75
                         font.pixelSize: Consts.fontNormal
@@ -120,16 +116,6 @@ Item {
                         visualStatesItem.openArticle()
                     } else {
                         visualStatesItem.hideArticle()
-                    }
-
-                    if (visualStatesItem.openedArticle) {
-
-                    }
-                }
-
-                onDoubleClicked: {
-                    if (visualStatesItem.openedArticle) {
-                       // visualStatesItem.hideArticle()
                     }
                 }
             } // MouseArea {

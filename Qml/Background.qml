@@ -1,5 +1,7 @@
 import QtQuick 2.7
 
+import "./"
+
 Item {
     id: _background
 
