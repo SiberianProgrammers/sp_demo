@@ -10,7 +10,9 @@ Item {
     id: _journalDelegate
 
     width: Window.width - 2*Consts.margin
-    height: contentColumn.height
+    // Костыль... из-за этого глючила анимация
+    //height: contentColumn.height
+    height: articleHeader.height + articleImage.height + 3*Consts.margin
     anchors.horizontalCenter: parent.horizontalCenter
 
     //--------------------------------------------------------------------------
@@ -65,9 +67,7 @@ Item {
                 //--------------------------------------------------------------
                 // Картинка новости
                 //--------------------------------------------------------------------------
-
                 ImageParallax {
-
                     id: articleImage
 
                     source: "qrc:/Journal/trump.png"
@@ -84,16 +84,14 @@ Item {
                 Item {
                     id: articleContentItem
 
-                    width: _journalDelegate.width - 4*Consts.margin
+                    width: Window.width - 6*Consts.margin
                     height: articleContent.height
-                    visible: articleContent.visible
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     Text {
                         id: articleContent
 
                         //text: model.content - выставляется в VisualStatesItem
-                        visible: text !== ""
                         width: articleContentItem.width
                         opacity: 0.75
                         font.pixelSize: Consts.fontNormal

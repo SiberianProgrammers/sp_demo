@@ -26,7 +26,7 @@ Item {
 
             PropertyChanges {
                 target: articleContent
-                anchors.bottomMargin: -0.5*_journalItemBackground.height
+                anchors.bottomMargin: -0.25*_journalItemBackground.height
             }
 
             PropertyChanges {
@@ -78,7 +78,6 @@ Item {
     transitions: [
         Transition {
             to: "fullsize"
-
             PropertyAction {
                 target: articleContent;
                 property: "text";
@@ -103,30 +102,48 @@ Item {
             NumberAnimation {
                 easing.type: Easing.OutQuad
                 property: "anchors.bottomMargin"
-                duration: 600
+                duration: 500
             }
         }
         , Transition {
             to: "preview"
 
-            PropertyAction {
-                target: articleContent;
-                property: "text";
-                value: ""
-            }
-
-            NumberAnimation {
-                easing.type: Easing.OutQuad
-                properties: "opacity,anchors.margins,imageShift,contentY,imageParalaxHeight"
-                duration: 350
-            }
-
-            ParentAnimation {
-                via: journalView
+            SequentialAnimation {
                 NumberAnimation {
                     easing.type: Easing.OutQuad
-                    properties: "x,y,width,height"
-                    duration: 400
+                    property: "anchors.bottomMargin"
+                    duration: 200
+                }
+
+                PropertyAction {
+                    target: articleContent;
+                    property: "text";
+                    value: ""
+                }
+            }
+
+            SequentialAnimation {
+                NumberAnimation {
+                    easing.type: Easing.OutQuad
+                    properties: "opacity,anchors.margins,imageShift,contentY,imageParalaxHeight"
+                    duration: 350
+                }
+            }
+
+            SequentialAnimation {
+                ParentAnimation {
+                    via: journalView
+                    NumberAnimation {
+                        easing.type: Easing.OutQuad
+                        properties: "x,y,width,height"
+                        duration: 400
+                    }
+                }
+
+                PropertyAction {
+                    target: articleImage;
+                    property: "freezed";
+                    value: false
                 }
             }
         }
@@ -134,6 +151,7 @@ Item {
 
     //--------------------------------------------------------------------------
     function openArticle() {
+        articleImage.freezed = true
         _visualStatesItem.state = "fullsize"
         _visualStatesItem.openedArticle = true
     } // function openArticle() {
