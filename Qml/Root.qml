@@ -48,6 +48,7 @@ Item {
         } // Loader { id: demoAppLoader
 
         //--------------------------------------------------------------------------
+        state: "screenOfChoise"
         states: [
             State {
                 name: "screenOfChoise"

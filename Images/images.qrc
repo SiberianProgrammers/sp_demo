@@ -10,5 +10,6 @@
         <file>Camera/Shoot.png</file>
         <file>Camera/ShootPressed.png</file>
         <file>Camera/SwitchCamera.png</file>
+        <file>Journal/trump.png</file>
     </qresource>
 </RCC>
