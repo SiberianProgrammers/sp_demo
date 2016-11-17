@@ -8,21 +8,17 @@ import "qrc:/Components"
 Item {
     id: root
 
+    readonly property alias toast: toast
+    readonly property alias keysHandler: keysHandler
+
     width: Window.width
     height: Window.height
-
     Keys.forwardTo: keysHandler
 
-    readonly property alias flashMessage: _flashMessage
-    readonly property alias keysHandler: _keysHandler
-
-    KeysHandler { id: _keysHandler }
-    FlashMessage { id: _flashMessage }
-
-    //--------------------------------------------------------------------------
-    Background {
-
-    }
+    KeysHandler { id: keysHandler }
+    Toast       { id: toast }
+    Background  { id: background }
+    ListModel   { id: demoAppsModel }
 
     //--------------------------------------------------------------------------
     Item {
@@ -78,9 +74,6 @@ Item {
             }
         ]
     } // Item { id: rootContainer
-
-    //--------------------------------------------------------------------------
-    ListModel { id: demoAppsModel }
 
     //--------------------------------------------------------------------------
     function goTo (index) {

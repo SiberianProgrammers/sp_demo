@@ -28,6 +28,7 @@ Item {
 
         //source: "qrc:/Camera/CameraContainer.qml"
         anchors.fill: parent
+        asynchronous: true
     }
 
     // TODO добавить BusyIndicator

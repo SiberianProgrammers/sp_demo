@@ -14,10 +14,11 @@ Item {
     width: root.width
 
     //--------------------------------------------------------------------------
-    TextBig {
+    Text {
         id: captionObject
+
         // TODO - вынести в config.
-        text: "Сибирские программисты"
+        text: qsTr("Сибирские программисты")
         horizontalAlignment: Text.AlignHCenter
         width: parent.width - 2*Consts.margin
         color: "white"
@@ -26,20 +27,23 @@ Item {
             topMargin: Consts.marginBig + Consts.statusBarHeight
             horizontalCenter: parent.horizontalCenter
         }
-        font.pixelSize: Consts.fontBig
+        font {
+            pixelSize: Consts.fontBig
+            letterSpacing: Consts.fontBigLetterSpacing
+        }
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     } // TextBig {
 
     //--------------------------------------------------------------------------
     Column {
         id: column
 
+        width: parent.width
+        spacing: 2*Consts.margin
         anchors {
             centerIn: parent
             verticalCenterOffset: captionObject.height //+ captionObject.anchors.topMargin
         }
-
-        width: parent.width
-        spacing: 2*Consts.margin
 
         //--------------------------------------------------------------------------
         Text {
