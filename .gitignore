@@ -1,3 +1,5 @@
 *.user
 *.autosave
-Android/gradle.properties
+*.properties
+*.properties~
+Programmer.pri
