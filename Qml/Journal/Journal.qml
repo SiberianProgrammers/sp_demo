@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 import SP 1.0
 
 import "../"
@@ -23,28 +23,47 @@ Item {
     ActionBar {
         id: actionBar
 
+        property bool animationEnabled: false
         title: "Онлайн Журнал"
         z: 1
-        opacity: 0.75
-        color: "transparent"
+       // opacity: 0.75
+//        color: "transparent"
         //titleColor: "black"
         titleColor: "white"
+        color: "#517da2"
         titleAlignment: Text.AlignHCenter
+        width: Window.width
+        y: 0
+
+        Behavior on y {
+            enabled: actionBar.animationEnabled
+            NumberAnimation { duration: 250 }
+        }
+
+        onYChanged: {
+            if (y <= -height) {
+                statusBar.opacity = 0.5
+            } else {
+                statusBar.opacity = 1.0
+            }
+        }
     } // ActionBar {
 
     //--------------------------------------------------------------------------
     BackButton {
         id: backButton
 
-        //arrowColor: "black"
         arrowColor: "white"
-        height: 1.5*Consts.margin
+        height: 2.5*Consts.margin
         opacity: 0.75
+        z: actionBar.z
+        borderColor: "gray"
 
         anchors {
             top: parent.top
             left: parent.left
-            margins: Consts.margin
+            topMargin: Consts.margin
+            leftMargin: Consts.margin
         }
 
         onClicked: {

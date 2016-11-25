@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 
 import "../"
 
@@ -10,13 +10,13 @@ ListView {
     delegate: JournalDelegate {}
 
     anchors {
-        top: actionBar.bottom
+        top: parent.top
         left: parent.left
         right: parent.right
         bottom: parent.bottom
+        topMargin: actionBar.height
     }
 
-    clip: true
     spacing: Consts.marginBig
     boundsBehavior: Flickable.StopAtBounds
 

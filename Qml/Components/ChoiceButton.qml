@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 import SP 1.0
 
 import "../"
@@ -23,12 +23,14 @@ MaterialButton {
         width: _button.maxWidth - 2*Consts.margin
         font.pixelSize: Consts.fontNormal
         horizontalAlignment: Text.AlignHCenter
-        color: "white"
+        //color: "white"
+        color: "black"
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     }
 
     border {
         width: Consts.borderWidth
-        color: Consts.gray
+        //color: "#416480"
+        color: "gray"
     }
 }

@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 import SP 1.0
 
 import "../"
@@ -13,17 +13,35 @@ Item {
     // Костыль... из-за этого глючила анимация
     //height: contentColumn.height
     height: articleHeader.height + articleImage.height + 3*Consts.margin
-    anchors.horizontalCenter: parent.horizontalCenter
+    // anchors Не работает. При смене родителя есть ошибки
+    //anchors.horizontalCenter: parent.horizontalCenter
+    x: Consts.margin
 
     //--------------------------------------------------------------------------
     // Нужно для корректной анимации ParentChange
     //--------------------------------------------------------------------------
     Rectangle {
         id: _journalItemBackground
-        width: parent.width
-        height: parent.height
 
+        width: Window.width - 2*Consts.margin
+        height: articleHeader.height + articleImage.height + 3*Consts.margin
         anchors.horizontalCenter: parent.horizontalCenter
+        radius: Consts.radius
+        clip: true
+
+        onYChanged: {
+            if (!actionBar.animationEnabled && visualStatesItem.openedArticle) {
+                var yMap = mapToItem(_journal, 0, 0).y
+                if (yMap < 0) {
+                    //statusBar.opacity = 0.5
+                    actionBar.animationEnabled = true
+                    actionBar.y = - actionBar.height - Consts.statusBarHeight
+                } else if (yMap < actionBar.height + Consts.statusBarHeight) {
+
+                    actionBar.y = yMap - actionBar.height - Consts.statusBarHeight
+                }
+            }
+        }
 
         //--------------------------------------------------------------------------
         // Содержимое с прокруткой
@@ -38,13 +56,30 @@ Item {
             //boundsBehavior: Flickable.StopAtBounds
             clip: true
 
+            onContentYChanged: {
+                backButton.anchors.topMargin = Math.min(Consts.margin, -contentY + articleImage.height - 5*Consts.margin)
+            }
+
             //------------------------------------------------------------------
             Column {
                 id: contentColumn
 
                 width: parent.width
-                topPadding: 1.5*Consts.margin
                 spacing: 1.5*Consts.margin
+
+                //--------------------------------------------------------------
+                // Картинка новости
+                //--------------------------------------------------------------------------
+                ImageParallax {
+                    id: articleImage
+
+                    source: "qrc:/Journal/trump.png"
+                    width: parent.width
+                    height: 0.4*Window.height
+                    delegate: _journalDelegate
+                    relativeItem: journalView
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
 
                 //--------------------------------------------------------------
                 // Заголовок
@@ -62,21 +97,6 @@ Item {
                     }
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     opacity: 0.75
-                }
-
-                //--------------------------------------------------------------
-                // Картинка новости
-                //--------------------------------------------------------------------------
-                ImageParallax {
-                    id: articleImage
-
-                    source: "qrc:/Journal/trump.png"
-                    width: parent.width
-                    height: 0.4*Window.height
-                    delegate: _journalDelegate
-                    relativeItem: journalView
-//                    sizeMultiplier: 3
-                    anchors.horizontalCenter: parent.horizontalCenter
                 }
 
                 //--------------------------------------------------------------
@@ -99,7 +119,6 @@ Item {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         textFormat: Text.StyledText
                         //horizontalAlignment: Text.AlignJustify
-
                         anchors {
                             bottom: parent.bottom
                             horizontalCenter: parent.horizontalCenter

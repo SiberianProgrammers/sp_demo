@@ -6,5 +6,6 @@
         <file>ScreenOfChoice.qml</file>
         <file>Background.qml</file>
         <file>Main.qml</file>
+        <file>StatusBar.qml</file>
     </qresource>
 </RCC>

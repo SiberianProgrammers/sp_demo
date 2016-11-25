@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>background.jpg</file>
         <file>Journal/trump.jpg</file>
-        <file>background1.png</file>
         <file>Camera/Cross.png</file>
         <file>Camera/FlashAuto.png</file>
         <file>Camera/FlashOff.png</file>
@@ -11,5 +9,6 @@
         <file>Camera/ShootPressed.png</file>
         <file>Camera/SwitchCamera.png</file>
         <file>Journal/trump.png</file>
+        <file>background.png</file>
     </qresource>
 </RCC>

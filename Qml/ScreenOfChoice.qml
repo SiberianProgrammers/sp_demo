@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 
 import "qrc:/SpQml"
 import "./"
@@ -21,10 +21,10 @@ Item {
         text: qsTr("Сибирские программисты")
         horizontalAlignment: Text.AlignHCenter
         width: parent.width - 2*Consts.margin
-        color: "white"
+        color: "black"
         anchors {
             top: parent.top
-            topMargin: Consts.marginBig + Consts.statusBarHeight
+            topMargin: 3*Consts.marginBig + Consts.statusBarHeight
             horizontalCenter: parent.horizontalCenter
         }
         font {
@@ -42,17 +42,17 @@ Item {
         spacing: 2*Consts.margin
         anchors {
             centerIn: parent
-            verticalCenterOffset: captionObject.height //+ captionObject.anchors.topMargin
+            verticalCenterOffset: 0.75*captionObject.height //+ captionObject.anchors.topMargin
         }
 
         //--------------------------------------------------------------------------
         Text {
-            text: qsTr("Выберите интересующий вас пример")
+            text: qsTr("Выберите интересующий Вас пример")
             horizontalAlignment: Text.AlignHCenter
             width: 0.8*_screenOfChoice.width
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             anchors.horizontalCenter: parent.horizontalCenter
-            color: "white"
+            color: "black"
             font.pixelSize: Consts.fontNormal
         } // Text {
 
@@ -88,7 +88,7 @@ Item {
         ChoiceButton {
             id: buttonContacts
 
-            text: qsTr("Работа с контактами")
+            text: qsTr("Список контаков")
             maxWidth: 0.75*Window.width
             width: Math.max(buttonContacts.contentWidth, buttonJournal.contentWidth, buttonCamera.contentWidth)
             anchors.horizontalCenter: parent.horizontalCenter

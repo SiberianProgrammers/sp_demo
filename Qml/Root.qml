@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.8
 import SP 1.0
 
 import "./"
@@ -8,15 +8,13 @@ import "qrc:/Components"
 Item {
     id: root
 
-    readonly property alias toast: toast
-    readonly property alias keysHandler: keysHandler
+    readonly property KeysHandler keysHandler: _main.keysHandler
+    readonly property Toast toast: _main.toast
+    readonly property alias statusBar: statusBar
 
     width: Window.width
     height: Window.height
-    Keys.forwardTo: keysHandler
 
-    KeysHandler { id: keysHandler }
-    Toast       { id: toast }
     Background  { id: background }
     ListModel   { id: demoAppsModel }
 
@@ -61,7 +59,7 @@ Item {
                 name: "demoApp"
                 PropertyChanges {
                     target: rootContainer
-                    x: -0.5*rootContainer.width
+                    x: -Window.width
                 }
             }
         ]
@@ -75,6 +73,8 @@ Item {
             }
         ]
     } // Item { id: rootContainer
+
+    StatusBar { id: statusBar }
 
     //--------------------------------------------------------------------------
     function goTo (index) {
