@@ -25,15 +25,12 @@ Item {
 
         property bool animationEnabled: false
         title: "Онлайн Журнал"
-        z: 1
-       // opacity: 0.75
-//        color: "transparent"
-        //titleColor: "black"
         titleColor: "white"
         color: "#517da2"
         titleAlignment: Text.AlignHCenter
         width: Window.width
         y: 0
+        z: 1
 
         Behavior on y {
             enabled: actionBar.animationEnabled
@@ -41,11 +38,9 @@ Item {
         }
 
         onYChanged: {
-            if (y <= -height) {
-                statusBar.opacity = 0.5
-            } else {
-                statusBar.opacity = 1.0
-            }
+            statusBar.opacity = y <= -height
+                                ? 0.5
+                                : 1.0;
         }
     } // ActionBar {
 

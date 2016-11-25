@@ -1,5 +1,4 @@
 import QtQuick 2.8
-
 import "../"
 
 //--------------------------------------------------------------------------
@@ -15,27 +14,24 @@ Item {
     states: [
         State {
             name: "preview"
+
             PropertyChanges {
                 target: contentFlickable
                 interactive: false
                 contentY: 0
             }
-
             PropertyChanges {
                 target: journalView
                 interactive: true
             }
-
             PropertyChanges {
                 target: articleContent
                 anchors.bottomMargin: -0.25*_journalItemBackground.height
             }
-
             PropertyChanges {
                 target: actionBar
                 shadowVisible: true
             }
-
             ParentChange {
                 target: _journalItemBackground
                 parent: _journalDelegate
@@ -56,39 +52,29 @@ Item {
                 x: 0
                 y: - Consts.statusBarHeight
             }
-
             PropertyChanges {
                 target: articleContent
                 anchors.bottomMargin: 0
             }
-
             PropertyChanges {
                 target: _journalDelegate
                 height: _journal.height
                 width: _journal.width
                 x: 0
             }
-
             PropertyChanges {
                 target: contentFlickable
                 interactive: true
                 contentY: 0
             }
-
             PropertyChanges {
                 target: journalView
                 interactive: false
             }
-
             PropertyChanges {
                 target: actionBar
                 shadowVisible: false
             }
-
-//            PropertyChanges {
-//                target: statusBar
-//                opacity: 0.5
-//            }
         }
     ] // states: [
 
@@ -103,34 +89,30 @@ Item {
                 property: "y"
                 duration: 250
             }
-
             PropertyAction {
                 target: articleContent;
                 property: "text";
+                //DEBUG!!! Тут нужен коментарий.
                 value: model.content.replace(/(\r\n|\n|\r)/gm,"")
             }
-
             ParentAnimation {
-                //via: journalView
                 via: _journal
                 NumberAnimation {
                     easing.type: Easing.OutQuad
                     properties: "x,y,width,height"
-                    duration: 400
+                    duration: 250
                 }
             }
-
             NumberAnimation {
                 target: statusBar
                 easing.type: Easing.OutQuad
                 property: "opacity"
-                duration: 400
+                duration: 250
             }
-
             NumberAnimation {
                 easing.type: Easing.OutQuad
                 property: "anchors.bottomMargin"
-                duration: 500
+                duration: 300
             }
         }
         , Transition {

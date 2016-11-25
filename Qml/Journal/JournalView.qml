@@ -8,7 +8,10 @@ ListView {
 
     model: journalModel
     delegate: JournalDelegate {}
-
+    header: Item {
+        width: parent.width
+        height: Consts.margin
+    }
     anchors {
         top: parent.top
         left: parent.left
@@ -19,11 +22,6 @@ ListView {
 
     spacing: Consts.marginBig
     boundsBehavior: Flickable.StopAtBounds
-
-    header: Item {
-        width: parent.width
-        height: Consts.margin
-    }
 
     //TODO
     // После прокрутки сделать внизу кнопку связаться с нами

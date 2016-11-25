@@ -11,10 +11,7 @@ Item {
 
     width: Window.width - 2*Consts.margin
     // Костыль... из-за этого глючила анимация
-    //height: contentColumn.height
     height: articleHeader.height + articleImage.height + 3*Consts.margin
-    // anchors Не работает. При смене родителя есть ошибки
-    //anchors.horizontalCenter: parent.horizontalCenter
     x: Consts.margin
 
     //--------------------------------------------------------------------------
@@ -52,8 +49,6 @@ Item {
             height: _journalDelegate.height
             width: _journalDelegate.width
             contentHeight: contentColumn.height
-            // Убрал специально, иначе коллизии с mouseArea.
-            //boundsBehavior: Flickable.StopAtBounds
             clip: true
 
             onContentYChanged: {
