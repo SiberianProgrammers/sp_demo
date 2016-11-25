@@ -5,12 +5,10 @@ int main(int argc, char *argv[])
     // TODO Обернуть в tsTr
     sp::SpApplication app(argc, argv, "Сибирские Программисты");
 
-    QFontDatabase::addApplicationFont(":/Century-Gothic-Bold.TTF");
-    QFontDatabase::addApplicationFont(":/Century-Gothic-BoldIt.TTF");
-    QFontDatabase::addApplicationFont(":/Century-Gothic-It.TTF");
-    QFontDatabase::addApplicationFont(":/Century-Gothic.TTF");
+    QFontDatabase::addApplicationFont(":/OpenSans-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/OpenSans-Regular.ttf");
 
-    app.setFont(QFont("Century Gothic"));
+    app.setFont(QFont("Open Sans"));
 
-    return app.exec();
+    return app.exec(QUrl("qrc:/Main.qml"));
 }

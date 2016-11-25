@@ -75,6 +75,7 @@ Item {
                     height: 0.4*Window.height
                     delegate: _journalDelegate
                     relativeItem: journalView
+//                    sizeMultiplier: 3
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 

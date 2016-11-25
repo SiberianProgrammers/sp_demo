@@ -9,10 +9,13 @@ include($$PWD/../sp_qt_libs/sp_qt_libs.pri)
 
 INCLUDEPATH += Include
 HEADERS += \
-    Include/SpApplication.h
+    Include/SpApplication.h \
+    Include/JniSetup.h \
+    Include/Consts.h
 
 SOURCES += Source/Main.cpp \
-    Source/SpApplication.cpp
+    Source/SpApplication.cpp \
+    Source/JniSetup.cpp
 
 RESOURCES += \
     $$PWD/Qml/qml.qrc \
@@ -38,3 +41,5 @@ android {
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/../sp_demo/Android
 }
+
+DISTFILES +=
