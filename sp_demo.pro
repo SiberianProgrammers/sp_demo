@@ -30,16 +30,17 @@ android {
     QT += androidextras
 
     DISTFILES += \
-        ../sp_demo/Android/AndroidManifest.xml \
-        ../sp_demo/Android/gradle/wrapper/gradle-wrapper.jar \
-        ../sp_demo/Android/gradlew \
-        ../sp_demo/Android/res/values/libs.xml \
-        ../sp_demo/Android/build.gradle \
-        ../sp_demo/Android/gradle/wrapper/gradle-wrapper.properties \
-        ../sp_demo/Android/gradlew.bat \
-        ../sp_demo/Android/src/com/sp/demo/SpDemoActivity.java
+        Android/AndroidManifest.xml \
+        Android/gradle/wrapper/gradle-wrapper.jar \
+        Android/gradlew \
+        Android/res/values/libs.xml \
+        Android/build.gradle \
+        Android/gradle/wrapper/gradle-wrapper.properties \
+        Android/gradlew.bat \
+        Android/src/com/sp/demo/SpDemoActivity.java \
+        Android/res/drawable/splash.xml
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/../sp_demo/Android
 }
 
-DISTFILES +=
+DISTFILES += \
