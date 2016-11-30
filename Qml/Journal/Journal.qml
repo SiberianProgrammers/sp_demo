@@ -79,7 +79,11 @@ Item {
 
 
     //--------------------------------------------------------------------------
-    JournalModel { id: journalModel }
+   // JournalModel { id: journalModel }
+
+    ArticlesPreviewModel { id: journalModel }
+
+    ArticleBlocksModel { id: articleBlocksModel }
 
     //--------------------------------------------------------------------------
     JournalView {

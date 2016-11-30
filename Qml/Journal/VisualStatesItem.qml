@@ -9,6 +9,11 @@ Item {
 
     property bool openedArticle: false
 
+    signal startHideAnimation()
+    signal startOpenAnimation()
+    signal stopHideAnimation()
+    signal stopOpenAnimation()
+
     //--------------------------------------------------------------------------
     state: "preview"
     states: [
@@ -25,8 +30,8 @@ Item {
                 interactive: true
             }
             PropertyChanges {
-                target: articleContent
-                anchors.bottomMargin: -0.25*_journalItemBackground.height
+                target: additionalContent.articleContent
+                anchors.topMargin: 0.25*_journalItemBackground.height
             }
             PropertyChanges {
                 target: actionBar
@@ -35,7 +40,7 @@ Item {
             ParentChange {
                 target: _journalItemBackground
                 parent: _journalDelegate
-                height: articleHeader.height + articleImage.height + 3*Consts.margin
+                height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
                 width : Window.width - 2*Consts.margin
                 x: 0
                 y: 0
@@ -53,8 +58,8 @@ Item {
                 y: - Consts.statusBarHeight
             }
             PropertyChanges {
-                target: articleContent
-                anchors.bottomMargin: 0
+                target: additionalContent.articleContent
+                anchors.topMargin: 0
             }
             PropertyChanges {
                 target: _journalDelegate
@@ -83,6 +88,12 @@ Item {
         Transition {
             to: "fullsize"
 
+            ScriptAction {
+                script: {
+                    _visualStatesItem.startOpenAnimation()
+                }
+            }
+
             NumberAnimation {
                 target: actionBar
                 easing.type: Easing.OutQuad
@@ -90,10 +101,10 @@ Item {
                 duration: 250
             }
             PropertyAction {
-                target: articleContent;
+                target: additionalContent.articleContent;
                 property: "text";
                 //DEBUG!!! Тут нужен коментарий.
-                value: model.content.replace(/(\r\n|\n|\r)/gm,"")
+                value: model.summary.replace(/(\r\n|\n|\r)/gm,"")
             }
             ParentAnimation {
                 via: _journal
@@ -109,14 +120,29 @@ Item {
                 property: "opacity"
                 duration: 250
             }
-            NumberAnimation {
-                easing.type: Easing.OutQuad
-                property: "anchors.bottomMargin"
-                duration: 300
+
+            SequentialAnimation {
+                NumberAnimation {
+                    easing.type: Easing.OutQuad
+                    property: "anchors.topMargin"
+                    duration: 300
+                }
+                ScriptAction {
+                    script: {
+                        _visualStatesItem.stopOpenAnimation()
+                    }
+                }
             }
         }
+
         , Transition {
             to: "preview"
+
+            ScriptAction {
+                script: {
+                    _visualStatesItem.startHideAnimation()
+                }
+            }
 
             NumberAnimation {
                 target: actionBar
@@ -140,12 +166,12 @@ Item {
 
                 NumberAnimation {
                     easing.type: Easing.OutQuad
-                    properties: "anchors.bottomMargin"
+                    properties: "anchors.topMargin"
                     duration: 200
                 }
 
                 PropertyAction {
-                    target: articleContent;
+                    target: additionalContent.articleContent;
                     property: "text";
                     value: ""
                 }
@@ -163,9 +189,15 @@ Item {
                 }
 
                 PropertyAction {
-                    target: articleImage;
+                    target: previewContent.articleImage;
                     property: "freezed";
                     value: false
+                }
+
+                ScriptAction {
+                    script: {
+                        _visualStatesItem.stopHideAnimation()
+                    }
                 }
             }
         }
@@ -173,8 +205,7 @@ Item {
 
     //--------------------------------------------------------------------------
     function openArticle() {
-        Log.info("openArticle iindex = " + index)
-        articleImage.freezed = true
+        previewContent.articleImage.freezed = true
         actionBar.animationEnabled = false
         _visualStatesItem.state = "fullsize"
         _visualStatesItem.openedArticle = true
@@ -182,7 +213,6 @@ Item {
 
     //--------------------------------------------------------------------------
     function hideArticle() {
-        Log.info("hideArticle index = " + index)
         _visualStatesItem.openedArticle = false
         actionBar.animationEnabled = true
         actionBar.y = 0

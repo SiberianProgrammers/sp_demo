@@ -11,7 +11,7 @@ Item {
 
     width: Window.width - 2*Consts.margin
     // Костыль... из-за этого глючила анимация
-    height: articleHeader.height + articleImage.height + 3*Consts.margin
+    height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
     x: Consts.margin
 
     //--------------------------------------------------------------------------
@@ -21,11 +21,12 @@ Item {
         id: _journalItemBackground
 
         width: Window.width - 2*Consts.margin
-        height: articleHeader.height + articleImage.height + 3*Consts.margin
+        height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
         anchors.horizontalCenter: parent.horizontalCenter
         radius: Consts.radius
         clip: true
 
+        // Смещение ActionBar'a "выталкиванием" карточкой
         onYChanged: {
             if (!actionBar.animationEnabled && visualStatesItem.openedArticle) {
                 var yMap = mapToItem(_journal, 0, 0).y
@@ -34,7 +35,6 @@ Item {
                     actionBar.animationEnabled = true
                     actionBar.y = - actionBar.height - Consts.statusBarHeight
                 } else if (yMap < actionBar.height + Consts.statusBarHeight) {
-
                     actionBar.y = yMap - actionBar.height - Consts.statusBarHeight
                 }
             }
@@ -51,8 +51,9 @@ Item {
             contentHeight: contentColumn.height
             clip: true
 
+            // Изменение положения кнопки назад
             onContentYChanged: {
-                backButton.anchors.topMargin = Math.min(Consts.margin, -contentY + articleImage.height - 5*Consts.margin)
+                backButton.anchors.topMargin = Math.min(Consts.margin, -contentY + previewContent.articleImage.height - 5*Consts.margin)
             }
 
             //------------------------------------------------------------------
@@ -63,63 +64,18 @@ Item {
                 spacing: 1.5*Consts.margin
 
                 //--------------------------------------------------------------
-                // Картинка новости
-                //--------------------------------------------------------------------------
-                ImageParallax {
-                    id: articleImage
-
-                    source: "qrc:/Journal/trump.png"
-                    width: parent.width
-                    height: 0.4*Window.height
-                    delegate: _journalDelegate
-                    relativeItem: journalView
-                    anchors.horizontalCenter: parent.horizontalCenter
+                // Контент видимый всегда
+                //--------------------------------------------------------------
+                PreviewContent {
+                    id: previewContent
                 }
 
                 //--------------------------------------------------------------
-                // Заголовок
+                // Контент видимый при раскрытии карточки
                 //--------------------------------------------------------------
-                Text {
-                    id: articleHeader
-
-                    text: model.header
-                    width: Window.width - 4*Consts.margin
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    verticalAlignment: Text.AlignVCenter
-                    font {
-                        pixelSize: Consts.fontNormal
-                        bold: true
-                    }
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    opacity: 0.75
+                AdditionalContent {
+                    id: additionalContent
                 }
-
-                //--------------------------------------------------------------
-                // Раскрытый текст
-                //--------------------------------------------------------------
-                Item {
-                    id: articleContentItem
-
-                    width: Window.width - 6*Consts.margin
-                    height: articleContent.height
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    Text {
-                        id: articleContent
-
-                        //text: model.content - выставляется в VisualStatesItem
-                        width: articleContentItem.width
-                        opacity: 0.75
-                        font.pixelSize: Consts.fontNormal
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        textFormat: Text.StyledText
-                        //horizontalAlignment: Text.AlignJustify
-                        anchors {
-                            bottom: parent.bottom
-                            horizontalCenter: parent.horizontalCenter
-                        }
-                    } // Text { id: articleContent
-                } // Item { id: articleContentItem
             } // Column { id: contentColumn
 
             //------------------------------------------------------------------

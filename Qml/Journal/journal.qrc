@@ -5,5 +5,17 @@
         <file>JournalDelegate.qml</file>
         <file>JournalView.qml</file>
         <file>VisualStatesItem.qml</file>
+        <file>PreviewContent.qml</file>
+        <file>AdditionalContent.qml</file>
+        <file>BlockCaption.qml</file>
+        <file>BlockText.qml</file>
+        <file>BlockSummary.qml</file>
+        <file>BlockImage.qml</file>
+        <file>BlockDate.qml</file>
+        <file>BlockAuthor.qml</file>
+        <file>BlockQuoteSmall.qml</file>
+        <file>BlockQuoteLarge.qml</file>
+        <file>BlockEnumList.qml</file>
+        <file>BlockNumberedList.qml</file>
     </qresource>
 </RCC>

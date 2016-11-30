@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets multimedia
+QT += qml quick widgets multimedia sql
 CONFIG += c++11
 
 include(Programmer.pri)
@@ -11,11 +11,18 @@ INCLUDEPATH += Include
 HEADERS += \
     Include/SpApplication.h \
     Include/JniSetup.h \
-    Include/Consts.h
+    Include/Consts.h \
+    Include/JournalDb.h \
+    Include/ArticlesPreviewModel.h \
+    Include/ArticleBlocksModel.h \
+    Include/BlocksModel.h
 
 SOURCES += Source/Main.cpp \
     Source/SpApplication.cpp \
-    Source/JniSetup.cpp
+    Source/JniSetup.cpp \
+    Source/ArticlesPreviewModel.cpp \
+    Source/ArticleBlocksModel.cpp \
+    Source/BlocksModel.cpp
 
 RESOURCES += \
     $$PWD/Qml/qml.qrc \
