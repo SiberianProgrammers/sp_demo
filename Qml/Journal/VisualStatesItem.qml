@@ -216,7 +216,6 @@ Item {
         _visualStatesItem.openedArticle = false
         actionBar.animationEnabled = true
         actionBar.y = 0
-        statusBar.opacity = 1.0
         _visualStatesItem.state = "preview"
     }
 }

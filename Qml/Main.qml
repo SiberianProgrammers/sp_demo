@@ -1,4 +1,5 @@
 import QtQuick 2.8
+import SP 1.0
 
 import "qrc:/SpQml"
 

@@ -31,7 +31,6 @@ Item {
             if (!actionBar.animationEnabled && visualStatesItem.openedArticle) {
                 var yMap = mapToItem(_journal, 0, 0).y
                 if (yMap < 0) {
-                    //statusBar.opacity = 0.5
                     actionBar.animationEnabled = true
                     actionBar.y = - actionBar.height - Consts.statusBarHeight
                 } else if (yMap < actionBar.height + Consts.statusBarHeight) {
@@ -53,7 +52,7 @@ Item {
 
             // Изменение положения кнопки назад
             onContentYChanged: {
-                backButton.anchors.topMargin = Math.min(Consts.margin, -contentY + previewContent.articleImage.height - 5*Consts.margin)
+                backButton.yShift = Math.min(0, -contentY + previewContent.articleImage.height - 5*Consts.margin)
             }
 
             //------------------------------------------------------------------

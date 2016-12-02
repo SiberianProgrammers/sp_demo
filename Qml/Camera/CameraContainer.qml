@@ -21,8 +21,8 @@ Rectangle {
     }
 
     property string photoSource
-    readonly property real cameraButtonsHeight: 20*mm
-    readonly property real previewButtonsHeight: 12*mm
+    readonly property double cameraButtonsHeight: 20*mm
+    readonly property double previewButtonsHeight: 12*mm
 
     color: "black"
 
