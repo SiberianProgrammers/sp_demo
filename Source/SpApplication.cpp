@@ -11,7 +11,8 @@ sp::SpApplication::SpApplication(int &argc, char **argv, const QString &title, i
     //  этом месте происходит регистрация классов
     //qmlRegisterType<sp::XaocModel>("SP", 1, 0, "XaocModel");
 
-    if (sp::createJournalDb()) {
+    if (sp::openSpDemoDb()) {
+        qDebug() << "Открыли БД журнала";
         qmlRegisterType<sp::ArticlesPreviewModel>("SP", 1, 0, "ArticlesPreviewModel");
         qmlRegisterType<sp::ArticleBlocksModel>("SP", 1, 0, "ArticleBlocksModel");
         qmlRegisterUncreatableType<sp::BlocksModel> ("SP", 1, 0, "BlocksModel",  ("Нельзя создавать объект типа BlocksModel"));

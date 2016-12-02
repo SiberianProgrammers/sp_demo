@@ -11,6 +11,11 @@ unix:!android {
 }
 
 android {
+    # Добавляем в проект db в каталог assets
+    sqlitedb.files += $$PWD/sp_demo.db
+    sqlitedb.path = /assets
+    INSTALLS += sqlitedb
+
     # Добавляем в проект SPActivity.java
     deployment.files += $$PWD/../sp_qt_libs/android/src/sp/SpActivity.java
     deployment.path = $$system_path(/src/sp/)
