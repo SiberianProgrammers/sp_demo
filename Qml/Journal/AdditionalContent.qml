@@ -83,7 +83,7 @@ Item {
         target: visualStatesItem
 
         onStopOpenAnimation: {
-            Log.info("onOpenAnimationStop")
+            Log.vonabirg("onOpenAnimationStop")
             blockRepeater.model = articleBlocksModel.getBlocksModel(index)
             downloadContentColumn.anchors.topMargin = Consts.margin
         }

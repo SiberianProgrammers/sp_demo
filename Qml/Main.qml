@@ -28,7 +28,7 @@ Item {
 
         interval: 50
         onTriggered: {
-            Log.info("Main.qml::startTimer triggered!")
+            Log.vonabirg("Main.qml::startTimer triggered!")
             rootLoader.source = "qrc:/Root.qml"
         }
     }

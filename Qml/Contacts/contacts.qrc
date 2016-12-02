@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/Contacts">
         <file>Contacts.qml</file>
-        <file>ContactsContainer.qml</file>
-        <file>ContactsDelegate.qml</file>
     </qresource>
 </RCC>

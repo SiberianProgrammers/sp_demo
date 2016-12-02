@@ -15,82 +15,80 @@ Item {
     width: Window.width
     height: Window.height
 
-    Background  { id: background }
-    ListModel   { id: demoAppsModel }
+    Background { id: background }
+    ListModel  { id: demoAppsModel }
+    StatusBar { id: statusBar }
 
     //--------------------------------------------------------------------------
-    Item {
-        id: rootContainer
+    // Экран выбора примера приложения
+    //--------------------------------------------------------------------------
+    ScreenOfChoice {
+        id: screenOfChoice
+    }
 
-        width: 2*parent.width
+    //--------------------------------------------------------------------------
+    // Загрузчик примера приложения
+    //--------------------------------------------------------------------------
+    Loader {
+        id: demoAppLoader
+
+        property int currentIndex: -1
+
+        width: root.width
         anchors {
             top: parent.top
+            left: screenOfChoice.right
             bottom: parent.bottom
+            topMargin: Consts.statusBarHeight
         }
+    }
 
-        //--------------------------------------------------------------------------
-        ScreenOfChoice {
-            id: screenOfChoice
-            anchors.left: parent.left
-        } // ScreenOfChoice { id: screenOfChoice
-
-        //--------------------------------------------------------------------------
-        Loader {
-            id: demoAppLoader
-
-            property int currentIndex: -1
-
-            anchors.right: parent.right
-            height: root.height
-            width: root.width
-        } // Loader { id: demoAppLoader
-
-        //--------------------------------------------------------------------------
-        state: "screenOfChoise"
-        states: [
-            State {
-                name: "screenOfChoise"
-                PropertyChanges {
-                    target: rootContainer
-                    x: 0
-                }
+    //--------------------------------------------------------------------------
+    state: "screenOfChoise"
+    states: [
+        State {
+            name: "screenOfChoise"
+            PropertyChanges {
+                target: screenOfChoice
+                x: 0
             }
-            , State {
-                name: "demoApp"
-                PropertyChanges {
-                    target: rootContainer
-                    x: -Window.width
-                }
+        }
+        , State {
+            name: "demoApp"
+            PropertyChanges {
+                target: screenOfChoice
+                x: -Window.width
             }
-        ]
+        }
+    ]
 
-        transitions: [
-            Transition {
-                NumberAnimation {
-                    properties: "x"
-                    duration: 300
-                }
+    //--------------------------------------------------------------------------
+    transitions: [
+        Transition {
+            NumberAnimation {
+                easing.type: Easing.OutQuad
+                properties: "x"
+                duration: 300
             }
-        ]
-    } // Item { id: rootContainer
-
-    StatusBar { id: statusBar }
+        }
+    ]
 
     //--------------------------------------------------------------------------
     function goTo (index) {
         demoAppLoader.currentIndex = index
+
         if (index === -1) {
-            rootContainer.state = "screenOfChoise"
+            state = "screenOfChoise"
         } else {
             demoAppLoader.source = demoAppsModel.get(index).source
-            rootContainer.state = "demoApp"
+            state = "demoApp"
         }
     }
 
     //--------------------------------------------------------------------------
     Component.onCompleted: {
-        demoAppsModel.append({source: "qrc:/Camera/Camera.qml"})
-        demoAppsModel.append({source: "qrc:/Journal/Journal.qml"})
-        demoAppsModel.append({source: "qrc:/Journal/Contacts.qml"})
+        demoAppsModel.append({ text: qsTr("Камера"),         source: "qrc:/Camera/Camera.qml" });
+        demoAppsModel.append({ text: qsTr("Онлайн журнал"),  source: "qrc:/Journal/Journal.qml" });
+        demoAppsModel.append({ text: qsTr("Список контаков"),source: "qrc:/Contacts/Contacts.qml" });
     }
 }

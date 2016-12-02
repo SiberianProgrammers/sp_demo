@@ -12,18 +12,12 @@ Item {
 
     signal backKeyPressed(var context)
 
-    width: parent.width
-    anchors {
-        top: parent.top
-        bottom: parent.bottom
-        topMargin: Consts.statusBarHeight
-    }
-
     //--------------------------------------------------------------------------
     ActionBar {
         id: actionBar
 
         property bool animationEnabled: false
+
         title: "Онлайн Журнал"
         titleColor: "white"
         color: "#517da2"
@@ -77,12 +71,8 @@ Item {
         } // Connections {
     } // BackButton {
 
-
     //--------------------------------------------------------------------------
-   // JournalModel { id: journalModel }
-
     ArticlesPreviewModel { id: journalModel }
-
     ArticleBlocksModel { id: articleBlocksModel }
 
     //--------------------------------------------------------------------------

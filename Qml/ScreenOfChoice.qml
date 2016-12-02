@@ -56,46 +56,22 @@ Item {
             font.pixelSize: Consts.fontNormal
         } // Text {
 
-        //--------------------------------------------------------------------------
-        ChoiceButton {
-            id: buttonCamera
+        Repeater {
+            model: demoAppsModel
 
-            text: qsTr("Камера")
-            maxWidth: 0.75*Window.width
-            width: Math.max(buttonContacts.contentWidth, buttonJournal.contentWidth, buttonCamera.contentWidth)
-            anchors.horizontalCenter: parent.horizontalCenter
+            //--------------------------------------------------------------------------
+            ChoiceButton {
+                id: buttonCamera
 
-            onClicked: {
-                root.goTo(0)
-            }
-        } // ChoiceButton { id: buttonCamera
+                text: model.text
+                maxWidth: 0.75*Window.width
+                width: maxWidth
+                anchors.horizontalCenter: parent.horizontalCenter
 
-        //--------------------------------------------------------------------------
-        ChoiceButton {
-            id: buttonJournal
-
-            text: qsTr("Онлайн журнал")
-            maxWidth: 0.75*Window.width
-            width: Math.max(buttonContacts.contentWidth, buttonJournal.contentWidth, buttonCamera.contentWidth)
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            onClicked: {
-                root.goTo(1)
-            }
-        } // ChoiceButton { id: buttonJournal
-
-        //--------------------------------------------------------------------------
-        ChoiceButton {
-            id: buttonContacts
-
-            text: qsTr("Список контаков")
-            maxWidth: 0.75*Window.width
-            width: Math.max(buttonContacts.contentWidth, buttonJournal.contentWidth, buttonCamera.contentWidth)
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            onClicked: {
-                root.goTo(2)
-            }
-        } // ChoiceButton { id: buttonContacts
+                onClicked: {
+                    root.goTo(index)
+                }
+            } // ChoiceButton { id: buttonCamera
+        }
     } // Column {
 }
