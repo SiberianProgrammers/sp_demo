@@ -7,8 +7,8 @@ import "qrc:/SpQml"
 MaterialButton {
     id: _button
 
-    property real maxWidth: Window.width
-    readonly property real contentWidth: textItem.contentWidth + 2*Consts.margin + 2*radius
+    property double maxWidth: Window.width
+    readonly property double contentWidth: textItem.contentWidth + 2*Consts.margin + 2*radius
 
     color: "transparent"
 

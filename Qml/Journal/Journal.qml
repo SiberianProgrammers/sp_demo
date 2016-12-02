@@ -23,18 +23,11 @@ Item {
         color: "#517da2"
         titleAlignment: Text.AlignHCenter
         width: Window.width
-        y: 0
         z: 1
 
         Behavior on y {
             enabled: actionBar.animationEnabled
             NumberAnimation { duration: 250 }
-        }
-
-        onYChanged: {
-            statusBar.opacity = y <= -height
-                                ? 0.5
-                                : 1.0;
         }
     } // ActionBar {
 
@@ -44,20 +37,19 @@ Item {
 
         arrowColor: "white"
         height: 2.5*Consts.margin
-        opacity: 0.75
+        y: Math.ceil((Consts.actionBarHeight - height)/2)
         z: actionBar.z
-        borderColor: "gray"
 
         anchors {
-            top: parent.top
             left: parent.left
-            topMargin: Consts.margin
             leftMargin: Consts.margin
         }
 
         onClicked: {
             backAction()
         }
+
+        //DebugRectangle { color: "red" }
 
         //--------------------------------------------------------------------------
         Connections {
