@@ -71,6 +71,7 @@ Item {
                 target: contentFlickable
                 interactive: true
                 contentY: 0
+                height: Window.height
             }
             PropertyChanges {
                 target: journalView

@@ -22,7 +22,7 @@ Item {
                                  })
 
     width: Window.width - 4*Consts.margin
-    height: articleContent.height + downloadContentColumn.height + Consts.margin
+    height: articleContent.height + downloadContentColumn.height + 2*Consts.margin
     anchors.horizontalCenter: parent.horizontalCenter
 
     //--------------------------------------------------------------

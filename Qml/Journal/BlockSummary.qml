@@ -1,5 +1,10 @@
-import QtQuick 2.0
+import QtQuick 2.8
+import "../"
 
-Item {
-
+Text {
+    text: model.blockData
+    width: parent.width
+    opacity: 0.75
+    font.pixelSize: Consts.fontNormal
+    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 }

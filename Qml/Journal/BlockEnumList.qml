@@ -1,6 +1,6 @@
 import QtQuick 2.8
 import "../"
-
+import "qrc:/SpQml"
 //------------------------------------------------------------------------------
 // Список-перечисление
 //------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            leftMargin: Consts.margin
+            //leftMargin: Consts.margin
         }
         spacing: Consts.spacing
 
@@ -31,21 +31,24 @@ Item {
 
                 //------------------------------------------------------------------------------
                 Rectangle {
-                    width: 1.5*mm
+                    width: mm
                     height: width
                     radius: width/2
                     color: "black"
                     opacity: 0.75
-                    anchors.verticalCenter: parent.verticalCenter
+                    anchors {
+                        top: parent.top
+                        topMargin: 0.5*(Consts.fontMetricsNormal.height - mm)
+                    }
                 }
 
                 //------------------------------------------------------------------------------
                 Text {
-                    width: column.width - 1.5*mm - Consts.margin
+                    width: column.width - mm - Consts.margin
                     text: numberedModel[index]
                     opacity: 0.75
                     font.pixelSize: Consts.fontNormal
-                    elide: Text.ElideRight
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 } // Text {
             } // Row {
         } // Repeater {

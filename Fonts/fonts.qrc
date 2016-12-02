@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>OpenSans-Bold.ttf</file>
         <file>OpenSans-Regular.ttf</file>
+        <file>PtSerif_b.ttf</file>
+        <file>PTSerif.ttf</file>
+        <file>PTSerif_i.ttf</file>
     </qresource>
 </RCC>

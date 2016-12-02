@@ -50,4 +50,21 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/../sp_demo/Android
 }
 
-DISTFILES += \
+mac {
+  SQLiteDb.files = $$PWD/sp_demo.db
+  SQLiteDb.path  = Contents/MacOS
+  QMAKE_BUNDLE_DATA += SQLiteDb
+}
+
+!mac {
+    # Копирование БД в папку с билдом. БД нельзя вставить в ресурсы.
+    # using shell_path() to correct path depending on platform
+    # escaping quotes and backslashes for file paths
+    copydata.commands = $(COPY_FILE) \"$$shell_path($$PWD\\sp_demo.db)\" \"$$shell_path($$OUT_PWD)\"
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
+    QMAKE_EXTRA_TARGETS += first copydata
+}
+
+

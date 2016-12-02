@@ -8,6 +8,7 @@ sp::ArticlesPreviewModel::ArticlesPreviewModel(QObject *parent)
     itemTable->select();
 
     int itemCount = itemTable->rowCount();
+
     for (int i = 0; i < itemCount; ++i) {
         QVector<QString> *article = new QVector<QString>;
         QSqlRecord record = itemTable->record(i);
