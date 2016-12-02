@@ -37,10 +37,11 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
         verticalAlignment: Text.AlignVCenter
         font {
-            pixelSize: Consts.fontNormal
-            bold: true
+            pixelSize: Consts.fontTitle
+            weight: Font.Medium
         }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         opacity: 0.75
+        antialiasing: false
     } // Text {
 }

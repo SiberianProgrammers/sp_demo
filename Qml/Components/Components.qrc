@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Components">
         <file>ChoiceButton.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

@@ -8,10 +8,6 @@ ListView {
 
     model: journalModel
     delegate: JournalDelegate {}
-    header: Item {
-        width: parent.width
-        height: Consts.margin
-    }
     anchors {
         top: parent.top
         left: parent.left

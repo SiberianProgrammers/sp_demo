@@ -38,6 +38,7 @@ Item {
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         textFormat: Text.StyledText
         //horizontalAlignment: Text.AlignJustify
+        antialiasing: true
         anchors {
             top: parent.top
             horizontalCenter: parent.horizontalCenter

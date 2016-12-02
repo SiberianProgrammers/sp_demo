@@ -25,13 +25,13 @@ SOURCES += Source/Main.cpp \
     Source/BlocksModel.cpp
 
 RESOURCES += \
-    $$PWD/Qml/qml.qrc \
-    Images/images.qrc \
-    Fonts/fonts.qrc \
-    Qml/Camera/camera.qrc \
-    Qml/Journal/journal.qrc \
-    Qml/Contacts/contacts.qrc \
-    Qml/Components/components.qrc
+    $$PWD/Qml/Qml.qrc \
+    Images/Images.qrc \
+    Fonts/Fonts.qrc \
+    Qml/Camera/Camera.qrc \
+    Qml/Journal/Journal.qrc \
+    Qml/Contacts/Contacts.qrc \
+    Qml/Components/Components.qrc
 
 android {
     QT += androidextras

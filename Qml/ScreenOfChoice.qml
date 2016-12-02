@@ -1,4 +1,6 @@
 import QtQuick 2.8
+import QtQuick.Layouts 1.1
+import SP 1.0
 
 import "qrc:/SpQml"
 import "./"
@@ -7,71 +9,113 @@ import "qrc:/Components"
 //--------------------------------------------------------------------------
 // Экран выбора различных приложений
 //--------------------------------------------------------------------------
-Item {
+ColumnLayout {
     id: _screenOfChoice
 
-    height: root.height
     width: root.width
+    spacing: 0
+    anchors {
+        top: parent.top
+        bottom: parent.bottom
+        topMargin: Consts.statusBarHeight
+    }
 
     //--------------------------------------------------------------------------
-    Text {
-        id: captionObject
+    Item {
+        Layout.preferredWidth: root.width
+        Layout.minimumHeight: captionObject.height + logo.height + Consts.margin
+        Layout.fillHeight: true
 
-        // TODO - вынести в config.
-        text: qsTr("Сибирские программисты")
-        horizontalAlignment: Text.AlignHCenter
-        width: parent.width - 2*Consts.margin
-        color: "black"
-        anchors {
-            top: parent.top
-            topMargin: 3*Consts.marginBig + Consts.statusBarHeight
-            horizontalCenter: parent.horizontalCenter
-        }
-        font {
-            pixelSize: Consts.fontBig
-            letterSpacing: Consts.fontBigLetterSpacing
-        }
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-    } // TextBig {
+        Column {
+            width: parent.width
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: Consts.margin
 
-    //--------------------------------------------------------------------------
-    Column {
-        id: column
-
-        width: parent.width
-        spacing: 2*Consts.margin
-        anchors {
-            centerIn: parent
-            verticalCenterOffset: 0.75*captionObject.height //+ captionObject.anchors.topMargin
-        }
-
-        //--------------------------------------------------------------------------
-        Text {
-            text: qsTr("Выберите интересующий Вас пример")
-            horizontalAlignment: Text.AlignHCenter
-            width: 0.8*_screenOfChoice.width
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: "black"
-            font.pixelSize: Consts.fontNormal
-        } // Text {
-
-        Repeater {
-            model: demoAppsModel
-
-            //--------------------------------------------------------------------------
-            ChoiceButton {
-                id: buttonCamera
-
-                text: model.text
-                maxWidth: 0.75*Window.width
-                width: maxWidth
+            Image {
+                id: logo
+                fillMode: Image.PreserveAspectFit
+                source: "qrc:/logo.png"
                 anchors.horizontalCenter: parent.horizontalCenter
+                width: 13*mm
+                height: width
+            }
 
-                onClicked: {
-                    root.goTo(index)
+            Text {
+                id: captionObject
+
+                text: qsTr("Сибирские\nпрограммисты")
+                horizontalAlignment: Text.AlignHCenter
+                width: parent.width - 2*Consts.margin
+                color: "black"
+                anchors.horizontalCenter: parent.horizontalCenter
+                font {
+                    pixelSize: Consts.fontBig
+                    letterSpacing: Consts.fontBigLetterSpacing
                 }
-            } // ChoiceButton { id: buttonCamera
+                fontSizeMode: Text.HorizontalFit
+                minimumPixelSize: Consts.fontSmall
+            } // Text {
+        } // Column {
+    } // Item {
+
+    //--------------------------------------------------------------------------
+    Item {
+        Layout.preferredWidth: root.width
+        Layout.preferredHeight: buttonsColumn.height
+
+        Column {
+            id: buttonsColumn
+
+            property real maxTextWidth: 0
+
+            width: parent.width
+            spacing: Consts.marginBig
+
+            Repeater {
+                model: demoAppsModel
+
+                //--------------------------------------------------------------------------
+                ChoiceButton {
+                    id: buttonCamera
+
+                    text: model.text
+                    width: Math.ceil(Math.min(0.75*Window.width, buttonsColumn.maxTextWidth + 2*Consts.marginBig))
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    onClicked: {
+                        root.goTo(index)
+                    }
+                } // ChoiceButton { id: buttonCamera
+            }
+        } // Column {
+    } // Item {
+
+    //--------------------------------------------------------------------------
+    Item {
+        Layout.preferredWidth: root.width
+        Layout.fillHeight: true
+        Layout.minimumHeight: 8*mm
+        Layout.preferredHeight: 9*mm
+        Layout.topMargin: Consts.marginBig
+
+        Text {
+            id: tipText
+
+            text: qsTr("Выберите пример\nприложения")
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            color: "#888888"
+            font.pixelSize: Consts.fontNormal
+            anchors.horizontalCenter: parent.horizontalCenter
+        } // Text {
+    } // Item {
+
+    //------------------------------------------------------------------------------
+    Component.onCompleted: {
+        for (var i = 0; i < demoAppsModel.count; ++i) {
+            var text = demoAppsModel.get(i).text;
+            var textWidth = Consts.fontMetricsTitle.boundingRect(text).width;
+            buttonsColumn.maxTextWidth = Math.max(textWidth, buttonsColumn.maxTextWidth);
         }
-    } // Column {
+    }
 }

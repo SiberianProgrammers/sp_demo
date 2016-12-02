@@ -7,12 +7,11 @@ import "qrc:/SpQml"
 MaterialButton {
     id: _button
 
-    property double maxWidth: Window.width
     readonly property double contentWidth: textItem.contentWidth + 2*Consts.margin + 2*radius
 
-    color: "transparent"
+    color: "#55ffffff"
 
-    height: textItem.height + 2*Consts.margin
+    height: Math.ceil(textItem.height + 2*Consts.margin+2*border.width)
     radius: 0.25*height
 
     durationAnimationPressed: 300
@@ -20,17 +19,15 @@ MaterialButton {
     pressedPlaceOpacity: 0.2
 
     textItem {
-        width: _button.maxWidth - 2*Consts.margin
-        font.pixelSize: Consts.fontNormal
+        width: _button.width - 2*Consts.margin
+        font.pixelSize: Consts.fontTitle
         horizontalAlignment: Text.AlignHCenter
-        //color: "white"
         color: "black"
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
     }
 
     border {
         width: Consts.borderWidth
-        //color: "#416480"
-        color: "gray"
+        color: "#55888888"
     }
 }

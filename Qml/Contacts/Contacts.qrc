@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Contacts">
         <file>Contacts.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

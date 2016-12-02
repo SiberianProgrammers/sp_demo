@@ -48,6 +48,7 @@ Item {
             height: _journalDelegate.height
             width: _journalDelegate.width
             contentHeight: contentColumn.height
+            boundsBehavior: Flickable.StopAtBounds
             clip: true
 
             // Изменение положения кнопки назад

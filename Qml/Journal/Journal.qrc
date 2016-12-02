@@ -17,5 +17,6 @@
         <file>BlockQuoteLarge.qml</file>
         <file>BlockEnumList.qml</file>
         <file>BlockNumberedList.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

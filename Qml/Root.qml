@@ -15,10 +15,13 @@ Item {
     width: Window.width
     height: Window.height
 
-    Background { id: background }
-    ListModel  { id: demoAppsModel }
+    ListModel { id: demoAppsModel }
     StatusBar { id: statusBar }
 
+    Background {
+        id: background
+        anchors.fill: screenOfChoice
+    }
     //--------------------------------------------------------------------------
     // Экран выбора примера приложения
     //--------------------------------------------------------------------------

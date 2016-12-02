@@ -2,5 +2,6 @@
     <qresource prefix="/Camera">
         <file>Camera.qml</file>
         <file>CameraContainer.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>
