@@ -39,6 +39,7 @@ Column {
         font {
             pixelSize: Consts.fontTitle
             weight: Font.Medium
+            //bold: true
         }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         opacity: 0.75

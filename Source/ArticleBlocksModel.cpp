@@ -23,10 +23,10 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
         int i = 0;
 
         while ( i < blocks.length()) {
-            int blockLength = blocks.left(3).toInt();
-            int blockId   = blocks.mid(3,2).toInt();
-            QString block = blocks.mid(5,blockLength);
-            blocks.remove(0, blockLength+5);
+            int blockLength = blocks.left(4).toInt();
+            int blockId   = blocks.mid(4,2).toInt();
+            QString block = blocks.mid(infoBlockLength,blockLength);
+            blocks.remove(0, blockLength+infoBlockLength);
 
             QStringList splitString = block.split(_separator);
             QStringList::iterator i;

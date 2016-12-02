@@ -43,6 +43,7 @@ class ArticleBlocksModel: public QObject
 
         const QString _separator = "|$|";
         int _currentArticleIndex = -1;
+        int infoBlockLength = 6;
 
 };
 }

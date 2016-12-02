@@ -12,5 +12,12 @@
         <file>background.png</file>
         <file>Journal/linus.jpg</file>
         <file>logo.png</file>
+        <file>Journal/Nordstrem.jpg</file>
+        <file>Journal/article2.jpg</file>
+        <file>Journal/article6.jpg</file>
+        <file>Journal/article3.jpg</file>
+        <file>Journal/article4.jpg</file>
+        <file>Journal/article_3_2.jpg</file>
+        <file>Journal/article_3_1.jpg</file>
     </qresource>
 </RCC>
