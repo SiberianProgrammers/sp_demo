@@ -37,7 +37,7 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
         verticalAlignment: Text.AlignVCenter
         font {
-            pixelSize: Consts.fontNormal
+            pixelSize: 1.2*Consts.fontNormal
             bold: true
         }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere

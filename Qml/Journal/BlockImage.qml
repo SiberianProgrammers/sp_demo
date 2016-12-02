@@ -21,7 +21,9 @@ Item {
     Text {
         id: caption
 
-        text: model.blockData[1]
+        text: model.blockData[1] !== undefined
+                ? model.blockData[1]
+                : ""
         width: blockImage.width
         opacity: 0.5
         font.pixelSize: Consts.fontSmall

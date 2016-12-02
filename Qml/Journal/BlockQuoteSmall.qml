@@ -18,7 +18,9 @@ Row {
         id: textObject
 
         anchors.verticalCenter: line.verticalCenter
-        text: model.blockData[0] + " " + model.blockData[1]
+        text: model.blockData[1] !== undefined
+                ? model.blockData[0] + " " + model.blockData[1]
+                : model.blockData[0]
         width: parent.width
         opacity: 0.75
         font.pixelSize: Consts.fontNormal
