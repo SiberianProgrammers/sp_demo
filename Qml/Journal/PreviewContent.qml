@@ -39,7 +39,7 @@ Column {
             text: model.caption
             //WIDTH
             //width: Window.width - 4*Consts.margin
-            width: Window.width - 2*Consts.margin
+            width: Window.width - 2*Consts.marginBig
             anchors.horizontalCenter: parent.horizontalCenter
             verticalAlignment: Text.AlignVCenter
             font {
@@ -56,7 +56,7 @@ Column {
             text: model.date//qsTr("3 декабря 2016 г.")
             anchors {
                 left: parent.left
-                leftMargin: Consts.margin
+                leftMargin: Consts.marginBig
                 bottom: parent.bottom
             }
 
