@@ -7,5 +7,6 @@
         <file>ContactDelegate.qml</file>
         <file>ProfileView.qml</file>
         <file>ProfileDelegate.qml</file>
+        <file>ContactsModel.qml</file>
     </qresource>
 </RCC>

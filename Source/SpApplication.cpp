@@ -1,4 +1,4 @@
-#include <QDebug>
+#include <LogSp.h>
 #include "SpApplication.h"
 #include "JournalDb.h"
 #include "ArticlesPreviewModel.h"
@@ -9,7 +9,8 @@ sp::SpApplication::SpApplication(int &argc, char **argv, const QString &title, i
     : SpApplicationPrototype (argc, argv, title, width, height)
 {
     if (sp::openSpDemoDb()) {
-        qDebug() << "Открыли БД журнала";
+        LOG_VONABIRG("Открыли БД журнала");
+
         qmlRegisterType<sp::ArticlesPreviewModel>("SP", 1, 0, "ArticlesPreviewModel");
         qmlRegisterType<sp::ArticleBlocksModel>("SP", 1, 0, "ArticleBlocksModel");
         qmlRegisterUncreatableType<sp::BlocksModel> ("SP", 1, 0, "BlocksModel",  ("Нельзя создавать объект типа BlocksModel"));

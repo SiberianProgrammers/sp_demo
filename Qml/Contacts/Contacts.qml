@@ -42,7 +42,8 @@ Rectangle {
                 }
             } // BackButton {
 
-        rightButton.sourceComponent: SearchButton { }
+        //rightButton.sourceComponent: SearchButton { }
+        rightButton.sourceComponent: Item { width: height; height: parent.height }
     } // ActionBar {
 
     //--------------------------------------------------------------------------
@@ -63,25 +64,8 @@ Rectangle {
     // Модель списка контактов
     // Затем должна брать данные из списка контактов Android
     //--------------------------------------------------------------------------
-    ListModel {
+    ContactsModel {
         id: contactsModel
-
-        ListElement {
-            name: "Серебренников Михаил"
-            company: "Сибирские Программисты"
-            position: "директор"
-            profileData: [
-                ListElement { value: "+7(950)-1-46-46-65"; icon: "qrc:/Contacts/Phone.png"; fieldName: "моб. телефон"; }
-            ]
-        }
-        ListElement {
-            name: "Грибанов Алексей"
-            company: "Сибирские Программисты"
-            position: "соучредитель"
-            profileData: [
-                ListElement { value: "+7(914)-924-42-46"; icon: "qrc:/Contacts/Phone.png"; fieldName: "моб. телефон"; }
-            ]
-        }
     } // ListModel { id: contactsModel
 
     //--------------------------------------------------------------------------

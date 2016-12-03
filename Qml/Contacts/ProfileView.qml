@@ -92,7 +92,8 @@ Rectangle {
         ImageSp {
             id: photo
 
-            source: ("qrc:/Contacts/Profiles/Profile%1.jpg").arg(index)
+            source: "qrc:/Contacts/Profiles/Profile" + index +".jpg"
+            onSourceChanged: Log.aleus ("source: " + source)
             anchors {
                 top: parent.top
                 left: parent.left
@@ -114,7 +115,7 @@ Rectangle {
             color: Consts.contactColor
             opacity: c0
         }
-    }
+    } // Item { id: photoContainer
 
     //--------------------------------------------------------------------------
     // Имя, должностью и компания (оранжевая полоса)
@@ -148,7 +149,7 @@ Rectangle {
                 id: nameView
 
                 readonly property real x0: (parent.width - contentWidth)/2
-                readonly property real x1: backButton.width-(backButton.width+Consts.margin)/2
+                readonly property real x1: backButton.width-(backButton.width)/2 - Consts.margin
                 readonly property real s1: (contentWidth-nameMinMetrics.contentWidth)/contentWidth
 
                 text: model.name
@@ -161,7 +162,7 @@ Rectangle {
                 minimumPixelSize: Consts.fontSmall
                 elide: Text.ElideRight
                 height: contentHeight
-                width: parent.width - Consts.margin
+                width: parent.width - 2*Consts.margin
                 scale: 1-c0*s1
                 x: x0 + c0*x1
 
@@ -170,7 +171,7 @@ Rectangle {
 
                     text: nameView.text
                     visible: false
-                    width: parent.width - Consts.margin - backButton.width
+                    width: parent.width - 2*Consts.margin - backButton.width
                     font {
                         pixelSize: Consts.fontBig
                         weight: Font.Medium
@@ -204,6 +205,7 @@ Rectangle {
                 anchors {
                     left: parent.left
                     right: parent.right
+                    margins: Consts.margin
                 }
             } // Text { id: companyView
         } // Column { id: column

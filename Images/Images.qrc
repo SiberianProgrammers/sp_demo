@@ -26,5 +26,27 @@
         <file>Contacts/City.png</file>
         <file>Contacts/Mail.png</file>
         <file>Contacts/Phone.png</file>
+        <file>Contacts/Profiles/Avatar1.jpg</file>
+        <file>Contacts/Profiles/Profile1.jpg</file>
+        <file>Contacts/Profiles/Avatar2.jpg</file>
+        <file>Contacts/Profiles/Avatar3.jpg</file>
+        <file>Contacts/Profiles/Avatar4.jpg</file>
+        <file>Contacts/Profiles/Avatar5.jpg</file>
+        <file>Contacts/Profiles/Avatar6.jpg</file>
+        <file>Contacts/Profiles/Avatar7.jpg</file>
+        <file>Contacts/Profiles/Profile2.jpg</file>
+        <file>Contacts/Profiles/Profile3.jpg</file>
+        <file>Contacts/Profiles/Profile4.jpg</file>
+        <file>Contacts/Profiles/Profile5.jpg</file>
+        <file>Contacts/Profiles/Profile6.jpg</file>
+        <file>Contacts/Profiles/Profile7.jpg</file>
+        <file>Contacts/Profiles/Avatar8.jpg</file>
+        <file>Contacts/Profiles/Avatar9.jpg</file>
+        <file>Contacts/Profiles/Profile8.jpg</file>
+        <file>Contacts/Profiles/Profile9.jpg</file>
+        <file>Contacts/Profiles/Avatar10.jpg</file>
+        <file>Contacts/Profiles/Avatar11.jpg</file>
+        <file>Contacts/Profiles/Profile10.jpg</file>
+        <file>Contacts/Profiles/Profile11.jpg</file>
     </qresource>
 </RCC>
