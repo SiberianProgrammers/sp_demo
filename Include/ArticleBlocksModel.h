@@ -39,10 +39,9 @@ class ArticleBlocksModel: public QObject
 
     private:
         QSqlRelationalTableModel *itemTable;
-        QMap<int, sp::BlocksModel* > blocksModelMap;
+        QHash<int, sp::BlocksModel* > blocksModelMap;
 
         const QString _separator = "|$|";
-        int _currentArticleIndex = -1;
         int infoBlockLength = 6;
 
 };

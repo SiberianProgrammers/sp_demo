@@ -24,6 +24,7 @@ int sp::BlocksModel::rowCount(const QModelIndex &parent) const
 //------------------------------------------------------------------------------
 QVariant sp::BlocksModel::data(const QModelIndex &index, int role) const
 {
+    qDebug() << "sp::BlocksModel::data = " << index.row();
     if (index.row() < blocksVector.count()) {
         switch (role) {
             case 0: // "blockId"
@@ -45,6 +46,7 @@ int sp::BlocksModel::count() const
 
 void sp::BlocksModel::appendBlock(int blockId, QVariant blockData)
 {
+    qDebug() << "appendBlock! blockId = " << blockId;
     Block* block = new Block(blockId, blockData);
     blocksVector.append(block);
     emit countChanged(blocksVector.count());

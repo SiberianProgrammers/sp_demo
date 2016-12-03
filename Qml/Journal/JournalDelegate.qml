@@ -11,8 +11,20 @@ Item {
 
     width: Window.width - 2*Consts.margin
     // Костыль... из-за этого глючила анимация
-    height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
+    height: previewContent.articleHeader.height
+            + previewContent.articleImage.height
+            + 3*Consts.margin
     x: Consts.margin
+
+    Shadow {
+        id: shadowBottom
+        width: Window.width - 2*Consts.margin
+        height: previewContent.articleHeader.height
+               + previewContent.articleImage.height
+               + 3*Consts.margin
+        x: 0.5*mm
+        y: 0.5*mm
+    }
 
     //--------------------------------------------------------------------------
     // Нужно для корректной анимации ParentChange
@@ -85,12 +97,15 @@ Item {
                     if (!visualStatesItem.openedArticle) {
                         visualStatesItem.openArticle()
                     } else {
-                        visualStatesItem.hideArticle()
+                        // TODO - убрал скрытие по нажатию
+                        //visualStatesItem.hideArticle()
                     }
                 }
             } // MouseArea {
         } // Flickable {
     } // Rectangle { id: _journalItemBackground
+
+
 
     //--------------------------------------------------------------------------
     Connections {

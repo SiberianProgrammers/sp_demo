@@ -45,5 +45,12 @@ public class SpDemoActivity extends SpActivity
     protected void onPause() {
         super.onPause();
     }
+
+    //--------------------------------------------------------------------------
+    // TODO Костыль для версий ниже 5. Разобраться почему JNI мозг колупает.
+    public static native void keyboardVisibleChanged(boolean visible, int height);
+
+    public static native void logInfo(String text);
+    public static native void logError(String text);
 }
 

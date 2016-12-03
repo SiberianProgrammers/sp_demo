@@ -11,7 +11,7 @@ sp::ArticleBlocksModel::ArticleBlocksModel(QObject *parent)
 //------------------------------------------------------------------------------
 sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
 {
-    _currentArticleIndex = index;
+    qDebug() << "sp::ArticleBlocksModel::getBlocksModel index = " << index;
 
     if (!blocksModelMap.contains(index)) {
         BlocksModel* blocksModel = new BlocksModel();
@@ -57,8 +57,14 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
                 break;
             }
         }
+        qDebug() << "Возвращаем новую модель.";
         return blocksModel;
     }
 
+
+    qDebug() << "blocksModelMap.size = " << blocksModelMap.size();
+    // CRASH! Вот на этом месте происходит крах при обращении к blocksModelMap.
+    qDebug() << " blocksModelMap = " << blocksModelMap;
+    qDebug() << "Возвращаем сохраненную модель. blocksModelMap.value(index) = " << blocksModelMap.value(index);
     return blocksModelMap.value(index);
 }

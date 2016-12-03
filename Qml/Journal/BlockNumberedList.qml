@@ -15,7 +15,6 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            leftMargin: Consts.spacing
         }
         spacing: Consts.spacing
 
@@ -40,7 +39,7 @@ Item {
                     text:  numberedModel[index]
                     opacity: 0.75
                     font.pixelSize: Consts.fontNormal
-                    elide: Text.ElideRight
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 } // Text {
             } // Row {
         } // Repeater {

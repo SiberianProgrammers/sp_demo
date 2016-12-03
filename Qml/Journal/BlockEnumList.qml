@@ -18,7 +18,6 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            //leftMargin: Consts.margin
         }
         spacing: Consts.spacing
 

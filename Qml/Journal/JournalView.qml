@@ -7,6 +7,7 @@ ListView {
     id: journalView
 
     model: journalModel
+    cacheBuffer: 2*height
     delegate: JournalDelegate {}
     anchors {
         top: parent.top
