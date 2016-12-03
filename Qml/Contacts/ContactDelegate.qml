@@ -17,7 +17,7 @@ MouseArea {
     ImageSp {
         id: avatar
 
-        source: "qrc:/Contacts/Profiles/Avatar0.jpg"
+        source: ("qrc:/Contacts/Profiles/Avatar%1.jpg").arg(index)
         radius: height/2
         anchors {
             left: parent.left
@@ -52,7 +52,7 @@ MouseArea {
         }
 
         Text {
-            text: "Михаил Серебренников"
+            text: model.name
             elide: Text.ElideRight
             font.pixelSize: Consts.fontNormal
             fontSizeMode: Text.HorizontalFit
@@ -64,7 +64,11 @@ MouseArea {
         }
 
         Text {
-            text: "директор, «Сибирские Программисты»"
+            text: model.company != null
+                  ? model.position != null
+                    ? ("%1, %2").arg(model.position).arg(model.company)
+                    : ("«%1»").arg(model.company)
+                  : model.position
             elide: Text.ElideRight
             font.pixelSize: Consts.fontSmall
             color: Consts.gray

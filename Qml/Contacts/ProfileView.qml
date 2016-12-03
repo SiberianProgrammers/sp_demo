@@ -12,7 +12,8 @@ Rectangle {
 
     property int index: 0
     property real c0: Math.pow((photo.height - photoContainer.height)/(photo.height - Consts.statusBarHeight), 2)
-    
+    property var model: contactsModel.get(index)
+
     y: -Consts.statusBarHeight
     z: actionBar.z
     width: parent.width
@@ -32,13 +33,7 @@ Rectangle {
     ListView {
         id: profileListView
 
-        model: ListModel {
-            ListElement { name: "1" }
-            ListElement { name: "1" }
-            ListElement { name: "1" }
-            ListElement { name: "1" }
-        }
-
+        model: _profileView.model.profileData
         delegate: ProfileDelegate { }
 
         boundsBehavior: ListView.StopAtBounds
@@ -97,7 +92,7 @@ Rectangle {
         ImageSp {
             id: photo
 
-            source: "qrc:/Contacts/Profiles/Profile0.jpg"
+            source: ("qrc:/Contacts/Profiles/Profile%1.jpg").arg(index)
             anchors {
                 top: parent.top
                 left: parent.left
@@ -155,7 +150,8 @@ Rectangle {
                 readonly property real x0: (parent.width - contentWidth)/2
                 readonly property real x1: backButton.width-(backButton.width+Consts.margin)/2
                 readonly property real s1: (contentWidth-nameMinMetrics.contentWidth)/contentWidth
-                text: "Михаил Серебренников"
+
+                text: model.name
                 color: "white"
                 font {
                     pixelSize: Consts.fontBig
@@ -188,7 +184,11 @@ Rectangle {
             Text {
                 id: companyView
 
-                text: "директор, «Сибирские Программисты»"
+                text: model.company != null
+                      ? model.position != null
+                        ? ("%1, %2").arg(model.position).arg(model.company)
+                        : ("«%1»").arg(model.company)
+                      : model.position
                 color: "white"
                 visible: text != ""
                 height: text != "" ? contentHeight : 0

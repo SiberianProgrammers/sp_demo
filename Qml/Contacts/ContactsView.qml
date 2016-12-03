@@ -16,7 +16,7 @@ ListView {
         right: parent.right
         bottom: parent.bottom
     }
-    model: 20
+    model: contactsModel
     delegate: ContactDelegate { }
     maximumFlickVelocity: 8*height
     header: Item {

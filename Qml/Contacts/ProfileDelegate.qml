@@ -24,7 +24,7 @@ Item {
         ImageSp {
             id: icon
 
-            source: "qrc:/Contacts/Phone.png"
+            source: model.icon
             height: 4*mm
             width: height
             anchors {
@@ -48,9 +48,7 @@ Item {
 
             //----------------------------------------------------------------------
             Text {
-                id: name
-
-                text: "+7(950)-1-46-46-65"
+                text: model.value
                 elide: Text.ElideRight
                 fontSizeMode: Text.HorizontalFit
                 minimumPixelSize: Consts.fontSmall
@@ -66,9 +64,7 @@ Item {
 
             //----------------------------------------------------------------------
             Text {
-                id: companyAndPosition
-
-                text: qsTr("моб. телефон")
+                text: model.fieldName
                 elide: Text.ElideRight
                 font.pixelSize: Consts.fontSmall
                 color: Consts.gray
