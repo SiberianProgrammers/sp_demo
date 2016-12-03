@@ -11,7 +11,7 @@ Rectangle {
     id: _journal
 
     signal backKeyPressed(var context)
-    color: "#eef1f3ff"
+    color: Consts.lightGray
 
     //--------------------------------------------------------------------------
     ActionBar {

@@ -25,7 +25,7 @@ ListModel {
             ListElement  { value: "+7(800)-800-00-01"; icon: "qrc:/Contacts/Phone.png"; fieldName: "моб. телефон"; }
             ,ListElement { value: "Москва"; icon: "qrc:/Contacts/City.png"; fieldName: "город"; }
             ,ListElement { value: "pontriagin@programmist.me"; icon: "qrc:/Contacts/Mail.png"; fieldName: "e-mail"; }
-            ,ListElement { value: "02.02.1992"; icon: "qrc:/Contacts/Birthday.png"; fieldName: "день рождения"; }
+            ,ListElement { value: "21 августа1908"; icon: "qrc:/Contacts/Birthday.png"; fieldName: "день рождения"; }
         ]
     }
     ListElement {
