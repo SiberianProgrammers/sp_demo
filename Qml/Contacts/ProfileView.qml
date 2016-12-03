@@ -13,9 +13,8 @@ Rectangle {
     property int index: 0
     property real c0: Math.pow((photo.height - photoContainer.height)/(photo.height - Consts.statusBarHeight), 2)
     
-    z: actionBar.z
-
     y: -Consts.statusBarHeight
+    z: actionBar.z
     width: parent.width
     height: root.height
 
@@ -222,10 +221,14 @@ Rectangle {
                 PropertyChanges {
                     target: _profileView
                     visible: false
+                    x: _contacts.width
                 }
                 PropertyChanges {
                     target: backKeyConnections
                     enabled: false
+                }
+                PropertyChanges {
+                    target: _contacts
                 }
             }
             ,State {
@@ -234,10 +237,15 @@ Rectangle {
                 PropertyChanges {
                     target: _profileView
                     visible: true
+                    x: -_contacts.x
                 }
                 PropertyChanges {
                     target: backKeyConnections
                     enabled: true
+                }
+                PropertyChanges {
+                    target: _contacts
+                    x: -_contacts.width/3
                 }
             }
             ,State {
@@ -246,13 +254,43 @@ Rectangle {
                 PropertyChanges {
                     target: _profileView
                     visible: true
+                    x: -_contacts.x
                 }
                 PropertyChanges {
                     target: backKeyConnections
                     enabled: true
                 }
+                PropertyChanges {
+                    target: _contacts
+                    x: -_contacts.width/3
+                }
             }
-        ]
+        ] // states: [
+
+        //----------------------------------------------------------------------
+        transitions: [
+            Transition {
+                from: "hidden"
+                to: "view"
+                reversible: true
+
+                SequentialAnimation {
+                    PropertyAction {
+                        target: _profileView
+                        property: "visible"
+                    }
+                    NumberAnimation {
+                        property: "x"
+                        easing.type: Easing.OutQuad
+                        duration: 300
+                    }
+                    PropertyAction {
+                        target: _contacts
+                        property: "visible"
+                    }
+                }
+            }
+        ] // transitions: [
     } // Item { id: statesItem
 
     //--------------------------------------------------------------------------

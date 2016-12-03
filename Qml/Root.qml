@@ -40,7 +40,6 @@ Item {
         width: root.width
         anchors {
             top: parent.top
-            left: screenOfChoice.right
             bottom: parent.bottom
             topMargin: Consts.statusBarHeight
         }
@@ -55,12 +54,20 @@ Item {
                 target: screenOfChoice
                 x: 0
             }
+            PropertyChanges {
+                target: demoAppLoader
+                x: root.width
+            }
         }
         , State {
             name: "demoApp"
             PropertyChanges {
                 target: screenOfChoice
-                x: -Window.width
+                x: -screenOfChoice.width/3
+            }
+            PropertyChanges {
+                target: demoAppLoader
+                x: 0
             }
         }
     ]
