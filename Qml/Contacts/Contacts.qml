@@ -42,8 +42,8 @@ Rectangle {
                 }
             } // BackButton {
 
-        //rightButton.sourceComponent: SearchButton { }
-        rightButton.sourceComponent: Item { width: height; height: parent.height }
+        //rightButton.sourceComponent: SearchButton { visible: false }
+        rightButton.sourceComponent: Item { width: Consts.actionBarHeight-Consts.marginBig; height: width }
     } // ActionBar {
 
     //--------------------------------------------------------------------------
