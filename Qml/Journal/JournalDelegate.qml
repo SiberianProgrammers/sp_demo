@@ -9,20 +9,31 @@ import "qrc:/SpQml"
 Item {
     id: _journalDelegate
 
-    width: Window.width - 2*Consts.margin
+    //WIDTH
+    //width: Window.width - 2*Consts.margin
+    width: Window.width
     // Костыль... из-за этого глючила анимация
-    height: previewContent.articleHeader.height
-            + previewContent.articleImage.height
-            + 3*Consts.margin
-    x: Consts.margin
+    //height: previewContent.articleHeader.height
+    //       + previewContent.articleImage.height
+    //       + 3*Consts.margin
+
+    height: previewContent.height + Consts.margin
+    //WIDTH
+    //x: Consts.margin
+    x: 0
 
     Shadow {
         id: shadowBottom
-        width: Window.width - 2*Consts.margin
-        height: previewContent.articleHeader.height
-               + previewContent.articleImage.height
-               + 3*Consts.margin
-        x: 0.5*mm
+        //WIDTH
+        //width: Window.width - 2*Consts.margin
+        width: Window.width
+
+        //height: previewContent.articleHeader.height
+        //       + previewContent.articleImage.height
+        //       + 3*Consts.margin
+
+        height: previewContent.height + Consts.margin
+        //x: 0.5*mm
         y: 0.5*mm
     }
 
@@ -32,10 +43,17 @@ Item {
     Rectangle {
         id: _journalItemBackground
 
-        width: Window.width - 2*Consts.margin
-        height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
+        //WIDTH
+        //width: Window.width - 2*Consts.margin
+        width: Window.width
+        //height: previewContent.articleHeader.height
+        //       + previewContent.articleImage.height
+        //       + 3*Consts.margin
+
+        height: previewContent.height + Consts.margin
         anchors.horizontalCenter: parent.horizontalCenter
-        radius: Consts.radius
+        //WIDTH
+        //radius: Consts.radius
         clip: true
 
         // Смещение ActionBar'a "выталкиванием" карточкой

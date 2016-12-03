@@ -21,7 +21,9 @@ Item {
                                  , 9: "qrc:/Journal/BlockEnumList.qml"
                                  })
 
-    width: Window.width - 4*Consts.margin
+    //WIDTH
+    //width: Window.width - 4*Consts.margin
+    width: Window.width - 2*Consts.margin
     height: articleContent.height + downloadContentColumn.height + 2*Consts.margin
     anchors.horizontalCenter: parent.horizontalCenter
 

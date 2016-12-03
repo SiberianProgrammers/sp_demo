@@ -16,6 +16,7 @@ sp::ArticlesPreviewModel::ArticlesPreviewModel(QObject *parent)
         article->append(record.value("imagesource").toString());
         article->append(record.value("caption").toString());
         article->append(record.value("summary").toString());
+        article->append(record.value("date").toString());
         databaseHash.insert(i, article);
     }
 }
@@ -43,6 +44,9 @@ QVariant sp::ArticlesPreviewModel::data(const QModelIndex &index, int role) cons
 
             case 3: // "summary"
                 return databaseHash.value(index.row())->at(3);
+
+            case 4: // "date"
+                return databaseHash.value(index.row())->at(4);
         }
     }
 
@@ -63,6 +67,7 @@ QHash<int, QByteArray> sp::ArticlesPreviewModel::roleNames() const
     roles.insert(1, "imageSource");
     roles.insert(2, "caption");
     roles.insert(3, "summary");
+    roles.insert(4, "date");
 
     return roles;
 }
