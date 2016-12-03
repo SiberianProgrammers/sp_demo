@@ -37,14 +37,14 @@ Item {
                 target: actionBar
                 shadowVisible: true
             }
-            ParentChange {
-                target: _journalItemBackground
-                parent: _journalDelegate
-                height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
-                width : Window.width - 2*Consts.margin
-                x: 0
-                y: 0
-            }
+//            ParentChange {
+//                target: _journalItemBackground
+//                parent: _journalDelegate
+//                height: previewContent.articleHeader.height + previewContent.articleImage.height + 3*Consts.margin
+//                width : Window.width - 2*Consts.margin
+//                x: 0
+//                y: 0
+//            }
         }
         , State {
             name: "fullsize"

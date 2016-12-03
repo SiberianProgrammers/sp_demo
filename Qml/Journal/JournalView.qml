@@ -14,7 +14,7 @@ ListView {
         left: parent.left
         right: parent.right
         bottom: parent.bottom
-        topMargin: actionBar.height
+        topMargin: actionBar.height + Consts.margin
     }
 
     spacing: Consts.marginBig

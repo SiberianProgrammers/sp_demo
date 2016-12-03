@@ -10,7 +10,7 @@ Column {
     readonly property alias articleHeader: articleHeader
 
     width: parent.width
-    spacing: parent.spacing
+    spacing: Consts.margin
 
     //--------------------------------------------------------------
     // Картинка новости
@@ -20,7 +20,7 @@ Column {
 
         source: model.imageSource //"qrc:/Journal/trump.png"
         width: parent.width
-        height: 0.4*Window.height
+        height: 0.3*Window.height
         delegate: _journalDelegate
         relativeItem: journalView
         anchors.horizontalCenter: parent.horizontalCenter
@@ -29,20 +29,43 @@ Column {
     //--------------------------------------------------------------
     // Заголовок
     //--------------------------------------------------------------
-    Text {
-        id: articleHeader
+    Item {
+        width: parent.width
+        height: articleHeader.height + dateObject.height + Consts.spacing
 
-        text: model.caption
-        width: Window.width - 4*Consts.margin
-        anchors.horizontalCenter: parent.horizontalCenter
-        verticalAlignment: Text.AlignVCenter
-        font {
-            pixelSize: Consts.fontTitle
-            weight: Font.Medium
-            //bold: true
+        Text {
+            id: articleHeader
+
+            text: model.caption
+            //WIDTH
+            //width: Window.width - 4*Consts.margin
+            width: Window.width - 2*Consts.margin
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            font {
+                pixelSize: Consts.fontTitle
+                //weight: Font.Medium
+                bold: true
+            }
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            antialiasing: false
+        } // Text {
+
+        Text {
+            id: dateObject
+            text: model.date//qsTr("3 декабря 2016 г.")
+            anchors {
+                left: parent.left
+                leftMargin: Consts.margin
+                bottom: parent.bottom
+            }
+
+            //anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: Consts.fontSmall
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            opacity: 0.75
+            antialiasing: false
         }
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        opacity: 0.75
-        antialiasing: false
-    } // Text {
+    }
 }
