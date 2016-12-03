@@ -48,9 +48,9 @@ Rectangle {
         Connections {
             target: root.keysHandler
             onBackKeyPressed: {
-                if (demoAppLoader.currentIndex === 1) {
-                    context.accepted = true
-                    backAction()
+                if (!context.accepted) {
+                    context.accepted = true;
+                    backAction();
                 }
             }
         }

@@ -17,7 +17,7 @@ Rectangle {
 
         title: "Список контактов"
         titleColor: "white"
-        color: "#ffff7f2a"
+        color: Consts.contactColor
         titleAlignment: Text.AlignHCenter
         width: Window.width
         z: 1
@@ -30,9 +30,9 @@ Rectangle {
                 Connections {
                     target: root.keysHandler
                     onBackKeyPressed: {
-                        if (demoAppLoader.currentIndex === 1) {
-                            context.accepted = true
-                            backAction()
+                        if (!context.accepted) {
+                            context.accepted = true;
+                            backAction();
                         }
                     }
                 }
@@ -50,6 +50,13 @@ Rectangle {
     //--------------------------------------------------------------------------
     ContactsView {
         id: contactsView
+    }
+
+    //--------------------------------------------------------------------------
+    // Анкета контакта
+    //--------------------------------------------------------------------------
+    ProfileView {
+        id: profileView
     }
 
     //--------------------------------------------------------------------------

@@ -93,8 +93,5 @@ Item {
         demoAppsModel.append({ text: qsTr("Камера"),         source: "qrc:/Camera/Camera.qml" });
         demoAppsModel.append({ text: qsTr("Онлайн журнал"),  source: "qrc:/Journal/Journal.qml" });
         demoAppsModel.append({ text: qsTr("Список контаков"),source: "qrc:/Contacts/Contacts.qml" });
-
-        //Debug!!!
-        goTo(2);
     }
 }

@@ -22,5 +22,9 @@
         <file>Contacts/Search.png</file>
         <file>Contacts/Profiles/Avatar0.jpg</file>
         <file>Contacts/Profiles/Profile0.jpg</file>
+        <file>Contacts/Birthday.png</file>
+        <file>Contacts/City.png</file>
+        <file>Contacts/Mail.png</file>
+        <file>Contacts/Phone.png</file>
     </qresource>
 </RCC>

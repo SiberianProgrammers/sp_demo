@@ -5,5 +5,7 @@
         <file>SearchButton.qml</file>
         <file>ContactsView.qml</file>
         <file>ContactDelegate.qml</file>
+        <file>ProfileView.qml</file>
+        <file>ProfileDelegate.qml</file>
     </qresource>
 </RCC>

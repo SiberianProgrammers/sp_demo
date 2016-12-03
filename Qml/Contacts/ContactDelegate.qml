@@ -7,7 +7,7 @@ import "qrc:/SpQml"
 //--------------------------------------------------------------------------
 // Список контактов
 //--------------------------------------------------------------------------
-Item {
+MouseArea {
     id: _contactDelegate
 
     width: _contactsView.width
@@ -42,35 +42,41 @@ Item {
     }
 
     //------------------------------------------------------------------------
-    Text {
-        id: name
-
-        text: "Михаил Серебренников"
-        elide: Text.ElideRight
-        font.pixelSize: Consts.fontNormal
+    Column {
+        spacing: Consts.spacing
         anchors {
             left: avatar.right
             right: parent.right
-            bottom: parent.verticalCenter
             margins: Consts.margin
-            bottomMargin: Consts.spacing/2
+            verticalCenter: parent.verticalCenter
         }
-    }
 
-    //------------------------------------------------------------------------
-    Text {
-        id: companyAndPosition
-
-        text: "директор, «Сибирские Программисты»"
-        elide: Text.ElideRight
-        font.pixelSize: Consts.fontSmall
-        color: Consts.gray
-        anchors {
-            left: avatar.right
-            right: parent.right
-            top: parent.verticalCenter
-            margins: Consts.margin
-            topMargin: Consts.spacing/2
+        Text {
+            text: "Михаил Серебренников"
+            elide: Text.ElideRight
+            font.pixelSize: Consts.fontNormal
+            fontSizeMode: Text.HorizontalFit
+            minimumPixelSize: Consts.fontSmall
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
         }
+
+        Text {
+            text: "директор, «Сибирские Программисты»"
+            elide: Text.ElideRight
+            font.pixelSize: Consts.fontSmall
+            color: Consts.gray
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+        }
+    } // Column {
+
+    //--------------------------------------------------------------------------
+    onClicked: {
+        profileView.show(index);
     }
 }
