@@ -19,5 +19,8 @@
         <file>Journal/article4.jpg</file>
         <file>Journal/article_3_2.jpg</file>
         <file>Journal/article_3_1.jpg</file>
+        <file>Contacts/Search.png</file>
+        <file>Contacts/Profiles/Avatar0.jpg</file>
+        <file>Contacts/Profiles/Profile0.jpg</file>
     </qresource>
 </RCC>

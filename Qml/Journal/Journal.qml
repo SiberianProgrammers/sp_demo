@@ -5,7 +5,7 @@ import "../"
 import "qrc:/SpQml"
 
 //--------------------------------------------------------------------------
-// Онлайн журнал
+// Экран онлайн-журнала
 //--------------------------------------------------------------------------
 Rectangle {
     id: _journal
@@ -40,19 +40,11 @@ Rectangle {
         height: 2.5*Consts.margin
         y: Math.ceil((Consts.actionBarHeight - height)/2)
         z: actionBar.z
-
         anchors {
             left: parent.left
             leftMargin: Consts.margin
         }
 
-        onClicked: {
-            backAction()
-        }
-
-        //DebugRectangle { color: "red" }
-
-        //--------------------------------------------------------------------------
         Connections {
             target: root.keysHandler
             onBackKeyPressed: {
@@ -61,7 +53,11 @@ Rectangle {
                     backAction()
                 }
             }
-        } // Connections {
+        }
+
+        onClicked: {
+            backAction()
+        }
     } // BackButton {
 
     //--------------------------------------------------------------------------
@@ -76,7 +72,7 @@ Rectangle {
     //--------------------------------------------------------------------------
     function backAction() {
         var context = { accepted: false }
-        _journal.backKeyPressed(context)
+        backKeyPressed(context)
 
         if (!context.accepted) {
             root.goTo(-1);

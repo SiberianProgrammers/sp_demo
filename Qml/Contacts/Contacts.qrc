@@ -2,5 +2,8 @@
     <qresource prefix="/Contacts">
         <file>Contacts.qml</file>
         <file>qmldir</file>
+        <file>SearchButton.qml</file>
+        <file>ContactsView.qml</file>
+        <file>ContactDelegate.qml</file>
     </qresource>
 </RCC>
