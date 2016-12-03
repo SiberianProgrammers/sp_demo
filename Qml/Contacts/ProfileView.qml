@@ -62,8 +62,9 @@ Rectangle {
             id: backKeyConnections
 
             target: root.keysHandler
+            enabled: false
             onBackKeyPressed: {
-                if (!context.accepted) {
+                if (!context.accepted && enabled) {
                     context.accepted = true;
                     backAction();
                 }
@@ -93,7 +94,6 @@ Rectangle {
             id: photo
 
             source: "qrc:/Contacts/Profiles/Profile" + index +".jpg"
-            onSourceChanged: Log.aleus ("source: " + source)
             anchors {
                 top: parent.top
                 left: parent.left

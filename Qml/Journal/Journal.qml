@@ -48,7 +48,7 @@ Rectangle {
         Connections {
             target: root.keysHandler
             onBackKeyPressed: {
-                if (!context.accepted) {
+                if (!context.accepted && enabled) {
                     context.accepted = true;
                     backAction();
                 }
