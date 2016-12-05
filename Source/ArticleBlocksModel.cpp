@@ -11,11 +11,9 @@ sp::ArticleBlocksModel::ArticleBlocksModel(QObject *parent)
 //------------------------------------------------------------------------------
 sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
 {
-    qDebug() << "sp::ArticleBlocksModel::getBlocksModel index = " << index;
-
-    if (!blocksModelMap.contains(index)) {
-        BlocksModel* blocksModel = new BlocksModel();
-        blocksModelMap.insert(index, blocksModel);
+    if (!blocksModelHash.contains(index)) {
+        BlocksModel* blocksModel = new BlocksModel(this);
+        blocksModelHash.insert(index, blocksModel);
 
         // Производим разбор блоков
         QSqlRecord record = itemTable->record(index);
@@ -33,19 +31,19 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
             QList<QString> partList;
 
             switch (blockId) {
-                case Blocks::Caption:
-                case Blocks::Text:
-                case Blocks::Summary:
-                case Blocks::Date:
-                case Blocks::Author:
+                case BlocksType::Caption:
+                case BlocksType::Text:
+                case BlocksType::Summary:
+                case BlocksType::Date:
+                case BlocksType::Author:
                     blocksModel->appendBlock(blockId, QVariant(block));
                     break;
 
-                case Blocks::Image:
-                case Blocks::QuoteSmal:
-                case Blocks::QuoteLarge:
-                case Blocks::NumberedList:
-                case Blocks::EnumList:
+                case BlocksType::Image:
+                case BlocksType::QuoteSmal:
+                case BlocksType::QuoteLarge:
+                case BlocksType::NumberedList:
+                case BlocksType::EnumList:
                     for (i = splitString.begin(); i != splitString.end(); ++i) {
                         partList.append(*i);
                     }
@@ -57,14 +55,8 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
                 break;
             }
         }
-        qDebug() << "Возвращаем новую модель.";
         return blocksModel;
     }
 
-
-    qDebug() << "blocksModelMap.size = " << blocksModelMap.size();
-    // CRASH! Вот на этом месте происходит крах при обращении к blocksModelMap.
-    qDebug() << " blocksModelMap = " << blocksModelMap;
-    qDebug() << "Возвращаем сохраненную модель. blocksModelMap.value(index) = " << blocksModelMap.value(index);
-    return blocksModelMap.value(index);
+    return blocksModelHash.value(index);
 }

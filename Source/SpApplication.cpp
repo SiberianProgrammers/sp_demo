@@ -9,12 +9,12 @@ sp::SpApplication::SpApplication(int &argc, char **argv, const QString &title, i
     : SpApplicationPrototype (argc, argv, title, width, height)
 {
     if (sp::openSpDemoDb()) {
-        LOG_VONABIRG("Открыли БД журнала");
+        LOG_INFO("Открыли SQLite");
 
         qmlRegisterType<sp::ArticlesPreviewModel>("SP", 1, 0, "ArticlesPreviewModel");
         qmlRegisterType<sp::ArticleBlocksModel>("SP", 1, 0, "ArticleBlocksModel");
         qmlRegisterUncreatableType<sp::BlocksModel> ("SP", 1, 0, "BlocksModel",  ("Нельзя создавать объект типа BlocksModel"));
     } else {
-        qDebug() << "Произошла ошибка при созданни БД. Журнал недоступен.";
+        LOG_ERROR("Произошла ошибка при открытии БД.");
     }
 }

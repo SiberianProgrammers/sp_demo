@@ -8,15 +8,19 @@ import "qrc:/Components"
 Item {
     id: root
 
-    readonly property KeysHandler keysHandler: _main.keysHandler
-    readonly property Toast toast: _main.toast
     readonly property alias statusBar: statusBar
+    readonly property alias keysHandler: keysHandler
+    readonly property alias toast: toast
+
+    Keys.forwardTo: keysHandler
 
     width: Window.width
     height: Window.height
 
     ListModel { id: demoAppsModel }
     StatusBar { id: statusBar }
+    KeysHandler { id: keysHandler }
+    Toast       { id: toast }
 
     Background {
         id: background
@@ -46,52 +50,74 @@ Item {
     }
 
     //--------------------------------------------------------------------------
-    state: "screenOfChoise"
-    states: [
-        State {
-            name: "screenOfChoise"
-            PropertyChanges {
-                target: screenOfChoice
-                x: 0
-            }
-            PropertyChanges {
-                target: demoAppLoader
-                x: root.width
-            }
-        }
-        , State {
-            name: "demoApp"
-            PropertyChanges {
-                target: screenOfChoice
-                x: -screenOfChoice.width/3
-            }
-            PropertyChanges {
-                target: demoAppLoader
-                x: 0
-            }
-        }
-    ]
+    Item {
+        id: statesItem
 
-    //--------------------------------------------------------------------------
-    transitions: [
-        Transition {
-            NumberAnimation {
-                easing.type: Easing.OutQuad
-                properties: "x"
-                duration: 300
+        state: "screenOfChoise"
+        states: [
+            State {
+                name: "screenOfChoise"
+                PropertyChanges {
+                    target: screenOfChoice
+                    x: 0
+                    visible: true
+                }
+                PropertyChanges {
+                    target: demoAppLoader
+                    x: root.width
+                    visible: false
+                }
             }
-        }
-    ]
+            , State {
+                name: "demoApp"
+                PropertyChanges {
+                    target: screenOfChoice
+                    x: -screenOfChoice.width/3
+                    //visible: false
+                }
+                PropertyChanges {
+                    target: demoAppLoader
+                    x: 0
+                    visible: true
+                }
+            }
+        ]
+
+        //--------------------------------------------------------------------------
+        transitions: [
+            Transition {
+                from: "screenOfChoise"
+                to: "demoApp"
+                reversible: true
+
+                SequentialAnimation {
+                    PropertyAction {
+                        target: demoAppLoader
+                        property: "visible"
+                    }
+                    NumberAnimation {
+                        easing.type: Easing.OutQuad
+                        properties: "x"
+                        duration: 300
+                    }
+                    PropertyAction {
+                        target: screenOfChoice
+                        property: "visible"
+                    }
+                }
+            }
+        ] // transitions: [
+    } // Item { id: statesItem
 
     //--------------------------------------------------------------------------
     function goTo (index) {
         demoAppLoader.currentIndex = index
 
         if (index === -1) {
-            state = "screenOfChoise"
+            statesItem.state = "screenOfChoise";
         } else {
             demoAppLoader.source = demoAppsModel.get(index).source
-            state = "demoApp"
+            statesItem.state = "demoApp";
         }
     }
 

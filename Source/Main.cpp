@@ -13,5 +13,5 @@ int main(int argc, char *argv[])
     //app.setFont(QFont("PT Serif"));
     app.setFont(QFont("Open Sans"));
 
-    return app.exec(QUrl("qrc:/Main.qml"));
+    return app.exec();
 }

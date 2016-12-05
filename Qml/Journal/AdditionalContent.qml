@@ -74,6 +74,7 @@ Item {
 
             // Выставляется в onStopOpenAnimation
             //model: articleBlocksModel.getBlocksModel(index)
+
             Loader {
                 width: parent.width
                 source: blockDelegate[model.blockId]

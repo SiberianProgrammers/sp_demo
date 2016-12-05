@@ -17,7 +17,7 @@ class ArticleBlocksModel: public QObject
     Q_OBJECT
 
     public:
-        enum Blocks {
+        enum BlocksType {
             Caption        = 0 // Заголовок
             , Text         = 1 // Обычный текст
             , Summary      = 2 // Краткое содержание
@@ -30,16 +30,16 @@ class ArticleBlocksModel: public QObject
             , EnumList     = 9 // Список-перечисление
         };
 
-        Q_ENUM (Blocks)
+        Q_ENUM (BlocksType)
 
     public:
         ArticleBlocksModel(QObject *parent = NULL);
 
-        Q_INVOKABLE sp::BlocksModel* getBlocksModel(int index) ;
+        Q_INVOKABLE sp::BlocksModel* getBlocksModel(int index);
 
     private:
         QSqlRelationalTableModel *itemTable;
-        QHash<int, sp::BlocksModel* > blocksModelMap;
+        QHash<int, sp::BlocksModel*> blocksModelHash;
 
         const QString _separator = "|$|";
         int infoBlockLength = 6;
