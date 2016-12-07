@@ -51,6 +51,16 @@ void sp::BlocksModel::appendBlock(int blockId, QVariant blockData)
     emit countChanged(blocksVector.count());
 }
 
+void sp::BlocksModel::appendImage(const QString& image)
+{
+    imagesList.append(image);
+}
+
+QList<QString> sp::BlocksModel::getImagesList()
+{
+    return imagesList;
+}
+
 //------------------------------------------------------------------------------
 QHash<int, QByteArray> sp::BlocksModel::roleNames() const
 {

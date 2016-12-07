@@ -37,6 +37,10 @@ Item {
                 target: actionBar
                 shadowVisible: true
             }
+            PropertyChanges {
+                target: previewContent.openArticleMouseArea
+                enabled: true
+            }
 //            ParentChange {
 //                target: _journalItemBackground
 //                parent: _journalDelegate
@@ -78,6 +82,10 @@ Item {
                 interactive: false
             }
             PropertyChanges {
+                target: previewContent.openArticleMouseArea
+                enabled: false
+            }
+            PropertyChanges {
                 target: actionBar
                 shadowVisible: false
             }
@@ -104,8 +112,7 @@ Item {
             PropertyAction {
                 target: additionalContent.articleContent;
                 property: "text";
-                //DEBUG!!! Тут нужен коментарий.
-                value: model.summary.replace(/(\r\n|\n|\r)/gm,"")
+                value: model.summary //.replace(/(\r\n|\n|\r)/gm,"")
             }
             ParentAnimation {
                 via: _journal
@@ -218,5 +225,15 @@ Item {
         actionBar.animationEnabled = true
         actionBar.y = 0
         _visualStatesItem.state = "preview"
+    }
+
+    //--------------------------------------------------------------------------
+    function openFullScreen(currentIndex) {
+        fullScreenImageView.showFullscreen(articleBlocksModel.getBlocksModel(index).getImagesList(), currentIndex)
+    }
+
+    //--------------------------------------------------------------------------
+    function closeFullScreen() {
+        fullScreenImageView.hideFullscreen()
     }
 }

@@ -8,6 +8,8 @@
 #include <QMap>
 #include <QList>
 
+class ArticleBlocksModel;
+
 struct Block;
 
 namespace sp {
@@ -27,6 +29,8 @@ class BlocksModel: public QAbstractListModel
         int count() const;
 
         void appendBlock(int blockId, QVariant blockData);
+        void appendImage(const QString& image);
+        Q_INVOKABLE QList<QString> getImagesList();
 
     signals:
         void countChanged(int count);
@@ -37,6 +41,7 @@ class BlocksModel: public QAbstractListModel
     private:
         //TODO Добавить список всех изображений отдельное поле
         QVector<Block*> blocksVector;
+        QList<QString> imagesList;
 };
 }
 

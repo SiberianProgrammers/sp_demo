@@ -107,23 +107,25 @@ Item {
                     id: additionalContent
                 }
             } // Column { id: contentColumn
-
-            //------------------------------------------------------------------
-            MouseArea {
-                anchors.fill: contentColumn
-                onClicked: {
-                    if (!visualStatesItem.openedArticle) {
-                        visualStatesItem.openArticle()
-                    } else {
-                        // TODO - убрал скрытие по нажатию
-                        //visualStatesItem.hideArticle()
-                    }
-                }
-            } // MouseArea {
         } // Flickable {
+
+        //--------------------------------------------------------------
+        FullScreenImageView {
+            id: fullScreenImageView
+            keysHandler: root.keysHandler
+
+            onHide: {
+                actionBar.visible = true
+                backButton.visible = true
+            }
+
+            onShow: {
+                actionBar.visible = false
+                backButton.visible = false
+            }
+        }
+
     } // Rectangle { id: _journalItemBackground
-
-
 
     //--------------------------------------------------------------------------
     Connections {

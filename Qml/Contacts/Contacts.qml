@@ -21,26 +21,26 @@ Rectangle {
         titleAlignment: Text.AlignHCenter
         width: Window.width
         z: 1
-        leftButton.sourceComponent:
-            BackButton {
-                arrowColor: "white"
-                y: Math.ceil((Consts.actionBarHeight - height)/2)
-                z: actionBar.z
+        leftButton.sourceComponent: BackButton {
+            id: backButton
+            arrowColor: "white"
+            y: Math.ceil((Consts.actionBarHeight - height)/2)
+            z: actionBar.z
 
-                Connections {
-                    target: root.keysHandler
-                    onBackKeyPressed: {
-                        if (!context.accepted && enabled && visible) {
-                            context.accepted = true;
-                            backAction();
-                        }
+            Connections {
+                target: root.keysHandler
+                onBackKeyPressed: {
+                    if (!context.accepted && backButton.enabled && backButton.visible) {
+                        context.accepted = true;
+                        backAction();
                     }
                 }
+            }
 
-                onClicked: {
-                    backAction()
-                }
-            } // BackButton {
+            onClicked: {
+                backAction()
+            }
+        } // BackButton {
 
         //rightButton.sourceComponent: SearchButton { visible: false }
         rightButton.sourceComponent: Item { width: Consts.actionBarHeight-Consts.marginBig; height: width }

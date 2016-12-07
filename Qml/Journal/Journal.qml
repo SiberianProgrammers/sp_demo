@@ -33,6 +33,9 @@ Rectangle {
     } // ActionBar {
 
     //--------------------------------------------------------------------------
+    // BackButton отдельно от ActionBar, т.к. карточка выталкивает ActionBar за
+    // пределы экрана
+    //--------------------------------------------------------------------------
     BackButton {
         id: backButton
 
@@ -48,7 +51,7 @@ Rectangle {
         Connections {
             target: root.keysHandler
             onBackKeyPressed: {
-                if (!context.accepted && enabled && visible) {
+                if (!context.accepted && backButton.enabled && backButton.visible) {
                     context.accepted = true;
                     backAction();
                 }

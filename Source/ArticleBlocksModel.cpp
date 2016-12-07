@@ -3,6 +3,7 @@
 sp::ArticleBlocksModel::ArticleBlocksModel(QObject *parent)
     : QObject(parent)
 {
+    //TODO - вынести в отдельный поток
     itemTable = new QSqlRelationalTableModel(this);
     itemTable->setTable("journal");
     itemTable->select();
@@ -15,9 +16,14 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
         BlocksModel* blocksModel = new BlocksModel(this);
         blocksModelHash.insert(index, blocksModel);
 
-        // Производим разбор блоков
         QSqlRecord record = itemTable->record(index);
+        // Сразу добавляем в модель фото - заглавное изображение.
+        QString imageSource = record.value("imagesource").toString();
+
+        blocksModel->appendImage(imageSource);
+        // Производим разбор блоков
         QString blocks = record.value("blocks").toString();
+        int imagesLength = 0;
         int i = 0;
 
         while ( i < blocks.length()) {
@@ -40,6 +46,15 @@ sp::BlocksModel* sp::ArticleBlocksModel::getBlocksModel(int index)
                     break;
 
                 case BlocksType::Image:
+                    for (i = splitString.begin(); i != splitString.end(); ++i) {
+                        partList.append(*i);
+                    }
+                    partList.append(QString::number(++imagesLength));
+
+                    blocksModel->appendBlock(blockId, QVariant(partList));
+                    blocksModel->appendImage(partList.at(0));
+                    break;
+
                 case BlocksType::QuoteSmal:
                 case BlocksType::QuoteLarge:
                 case BlocksType::NumberedList:

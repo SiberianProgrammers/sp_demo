@@ -48,5 +48,6 @@
         <file>Contacts/Profiles/Avatar11.jpg</file>
         <file>Contacts/Profiles/Profile10.jpg</file>
         <file>Contacts/Profiles/Profile11.jpg</file>
+        <file>download.png</file>
     </qresource>
 </RCC>

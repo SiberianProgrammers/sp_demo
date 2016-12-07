@@ -31,4 +31,18 @@ Item {
         anchors.top: imageParallax.bottom
     }
 
+    MouseArea {
+        id: imageMouseArea
+        anchors.fill: parent
+
+        onClicked: {
+            if (model.blockData[2] === undefined) {
+                visualStatesItem.openFullScreen(parseInt(model.blockData[1]))
+            } else {
+                visualStatesItem.openFullScreen(parseInt(model.blockData[2]))
+            }
+
+        }
+    }
+
 }

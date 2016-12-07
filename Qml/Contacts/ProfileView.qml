@@ -64,7 +64,7 @@ Rectangle {
             target: root.keysHandler
             enabled: false
             onBackKeyPressed: {
-                if (!context.accepted && enabled) {
+                if (!context.accepted && backButton.enabled) {
                     context.accepted = true;
                     backAction();
                 }
