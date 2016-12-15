@@ -7,23 +7,27 @@ Item {
     id: blockImage
 
     width: parent.width
-    height: imageParallax.height + caption.height
+    height: caption.text === ""
+            ? imageParallax.height
+            : imageParallax.height + caption.height
 
     //Сделать паралакс
     ImageSp {
         id: imageParallax
 
         source: model.blockData[0] //"qrc:/Journal/trump.png"
-        width: parent.width
+        //width: parent.width
+        width: Window.width
+        anchors.horizontalCenter: parent.horizontalCenter
         height: 0.4*Window.height
     }
 
     Text {
         id: caption
 
-        text: model.blockData[1] !== undefined
-                ? model.blockData[1]
-                : ""
+        text: model.blockData[2] === undefined
+                ? ""
+                : model.blockData[1]
         width: blockImage.width
         opacity: 0.5
         font.pixelSize: Consts.fontSmall

@@ -80,6 +80,7 @@ Item {
             contentHeight: contentColumn.height
             boundsBehavior: Flickable.StopAtBounds
             clip: true
+            maximumFlickVelocity: 3000
 
             // Изменение положения кнопки назад
             onContentYChanged: {

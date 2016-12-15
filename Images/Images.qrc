@@ -49,5 +49,8 @@
         <file>Contacts/Profiles/Profile10.jpg</file>
         <file>Contacts/Profiles/Profile11.jpg</file>
         <file>download.png</file>
+        <file>Journal/article_2_1.png</file>
+        <file>Journal/article_6_1.jpg</file>
+        <file>Journal/article_1_1.jpg</file>
     </qresource>
 </RCC>

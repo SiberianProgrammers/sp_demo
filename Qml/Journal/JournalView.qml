@@ -19,6 +19,7 @@ ListView {
 
     spacing: Consts.marginBig
     boundsBehavior: Flickable.StopAtBounds
+    maximumFlickVelocity: 3000
 
     //TODO
     // После прокрутки сделать внизу кнопку связаться с нами
