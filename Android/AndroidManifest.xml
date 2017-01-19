@@ -1,11 +1,23 @@
 <?xml version="1.0"?>
-<manifest package="com.sp.demo" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="2" android:installLocation="auto">
+<manifest package="com.sp.demo" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.2" android:versionCode="3" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="@string/app_name" android:icon="@drawable/icon">
-         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="com.sp.demo.SpDemoActivity" android:label="@string/app_name" android:screenOrientation="unspecified" android:launchMode="singleTop">
+        <!-- Splash screen -->
+        <activity android:name="com.sp.demo.SplashActivity" android:label="@string/app_name" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+        </activity>
+        <!-- Splash screen -->
+
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="com.sp.demo.SpProjectPrototypeActivity" android:theme="@android:style/Theme.Translucent" android:label="@string/app_name" android:screenOrientation="unspecified" android:launchMode="singleTop">
+
+            <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter> -->
+
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
             <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
             <meta-data android:name="android.app.repository" android:value="default"/>
@@ -28,24 +40,13 @@
             <meta-data android:value="@string/ministro_needed_msg" android:name="android.app.ministro_needed_msg"/>
             <meta-data android:value="@string/fatal_error_msg" android:name="android.app.fatal_error_msg"/>
             <!--  Messages maps -->
-
-            <!-- Splash screen -->
-            <!--
-            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/logo"/>
-            -->
-            <!-- Splash screen -->
-
             <!-- Background running -->
             <!-- Warning: changing this value to true may cause unexpected crashes if the
                           application still try to draw after
                           "applicationStateChanged(Qt::ApplicationSuspended)"
                           signal is sent! -->
-            <meta-data android:name="android.app.background_running" android:value="false"/>
+            <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
-
-            <!-- Splash screen -->
-            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/splash"/>
-            <!-- Splash screen -->
         </activity>
     </application>
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="16"/>
@@ -58,5 +59,5 @@
     <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
          Remove the comment if you do not require these default features. -->
     <!-- %%INSERT_FEATURES -->
-
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

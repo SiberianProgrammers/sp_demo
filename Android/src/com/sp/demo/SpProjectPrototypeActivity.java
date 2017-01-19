@@ -4,9 +4,11 @@ import sp.SpActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import java.lang.System;
 
-public class SpDemoActivity extends SpActivity
+public class SpProjectPrototypeActivity extends SpActivity
 {
+     public boolean finishRenderingQML = false;
     Context context;
 
     //--------------------------------------------------------------------------
@@ -14,18 +16,21 @@ public class SpDemoActivity extends SpActivity
     public void onCreate(Bundle savedInstanceState) {
         context = this.getApplicationContext();
         super.onCreate(savedInstanceState);
+        logInfo("onCreate Activity ");
     }
 
     //--------------------------------------------------------------------------
     @Override
     public void onDestroy() {
         super.onDestroy();
+        logInfo("onDestroy Activity ");
     }
 
     //--------------------------------------------------------------------------
     @Override
     public void onStop() {
         super.onStop();
+        logInfo("onStop Activity ");
     }
 
     //--------------------------------------------------------------------------
@@ -44,11 +49,18 @@ public class SpDemoActivity extends SpActivity
     @Override
     protected void onPause() {
         super.onPause();
+
+        logInfo("onPause Activity finishRenderingQML = " + this.finishRenderingQML);
+        if (!this.finishRenderingQML) {
+            logInfo("завершаем приложение в onPause");
+            System.exit(0);
+        }
     }
 
-    //--------------------------------------------------------------------------
-    // TODO Костыль для версий ниже 5. Разобраться почему JNI мозг колупает.
-    public static native void keyboardVisibleChanged(boolean visible, int height);
+    public void finishSplash() {
+        this.finishRenderingQML = true;
+        SplashActivity.splashScreen.finish();
+    }
 
     public static native void logInfo(String text);
     public static native void logError(String text);

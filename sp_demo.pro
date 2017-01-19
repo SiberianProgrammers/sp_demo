@@ -44,7 +44,7 @@ android {
         Android/build.gradle \
         Android/gradle/wrapper/gradle-wrapper.properties \
         Android/gradlew.bat \
-        Android/src/com/sp/demo/SpDemoActivity.java \
+        Android/src/com/sp/demo/SplashActivity.java \
         Android/res/drawable/splash.xml
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/../sp_demo/Android
@@ -66,5 +66,8 @@ mac {
     export(copydata.commands)
     QMAKE_EXTRA_TARGETS += first copydata
 }
+
+DISTFILES += \
+    Android/src/com/sp/demo/SpProjectPrototypeActivity.java
 
 

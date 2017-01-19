@@ -14,6 +14,7 @@ static bool openSpDemoDb()
 
 #if defined(Q_OS_ANDROID)
 
+    //TODO проверить или поправить, потому что постоянно происходит копирование файлов.
     // Такая шарада нужна из-за того, что в assets только ReadOnly.
     QString dbPath = "assets:/sp_demo.db";
     QString dbNewPath = "./sp_demo.db";
@@ -26,6 +27,7 @@ static bool openSpDemoDb()
     db.setDatabaseName("sp_demo.db");
     return db.open();
 #endif
+
 
     return true;
 }
